@@ -1,0 +1,112 @@
+$card-background: white
+$trump:           purple
+$wands:           red
+$pentacles:       green
+$cups:            blue
+$swords:          yellow
+
+html, body
+  margin:               0
+  padding:              0
+  background-image:     url('/images/background_wood.jpg')
+  background-position:  0,0
+
+ul
+  list-style: none
+
+.bold
+  font-weight: bold
+
+#sidebar
+  background: white
+  opacity:    0.5
+  position:   absolute
+  width:      19%
+  min-height: 100%
+  right:      0
+  top:        0
+  .sidebar-stats
+    margin-left: -3px
+  .sidebar-card-info
+    margin-left: 5px
+
+#content
+  width:  80%
+
+  #spread
+    .card
+      max-width:  125px
+      background: $card-background
+      text-align: center
+      h5
+        border: 1px solid black
+        margin: 0
+      img
+        border: 1px solid black
+        width:  123px
+      .reversed
+        -webkit-transform:  rotate(180deg)
+        -moz-transform:     rotate(180deg)
+        -ms-transform:      rotate(180deg)
+        -o-transform:       rotate(180deg)
+        transform:          rotate(180deg)
+    .card.active
+      outline: 7px solid gold
+    .trump
+      border: 7px solid $trump
+    .wands
+      border: 7px solid $wands
+    .pentacles
+      border: 7px solid $pentacles
+    .cups
+      border: 7px solid $cups
+    .swords
+      border: 7px solid $swords
+
+    #spread-three-card
+      margin-top:       20%
+      margin-left:      25%
+      ul
+        display:        inline
+        li
+          margin-right: 43px
+          float:        left
+
+    #spread-enneagram
+      .card
+        max-width:  118px
+        img
+          width:    116px
+
+      ul
+        display:  inline
+        .past
+          float: left
+        .future
+          float: right
+      .row-1
+        position: absolute
+        width:    11%
+        left:     35.5%
+        top:      2%
+      .row-2
+        position: absolute
+        width:    33.5%
+        left:     23.5%
+        top:      15%
+      .row-3
+        position: absolute
+        width:    56.5%
+        left:     12%
+        top:      30%
+      .row-4
+        position: absolute
+        bottom:   15%
+        width:    79%
+        left:     0.5%
+      .row-5
+        position: absolute
+        bottom:   2%
+        width:    35%
+        left:     23%
+

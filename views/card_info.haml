@@ -1,0 +1,8 @@
+.bold Element:
+= card[:element]
+%br
+.bold Associations:
+= 'Stuggling with' if card[:reversed]
+= card[:associations].join(', ')
+as relates to
+= card[:domain].join(', ')

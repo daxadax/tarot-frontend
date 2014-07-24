@@ -1,0 +1,6 @@
+#spread
+  #spread-three-card
+    %ul
+      = render :haml, :card, :locals => { :card => cards[0], :position => '1' }
+      = render :haml, :card, :locals => { :card => cards[1], :position => '2' }
+      = render :haml, :card, :locals => { :card => cards[2], :position => '3' }

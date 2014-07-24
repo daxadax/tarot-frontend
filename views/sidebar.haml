@@ -1,0 +1,31 @@
+%ul.sidebar-stats
+  %li
+    - unless count.major.zero?
+      = "Major Arcana: #{count.major}"
+      = "[ #{average.major}% ]"
+  %li
+    - unless count.wands.zero?
+      = "Wands: #{count.wands}"
+      = "[ #{average.wands}% ]"
+  %li
+    - unless count.pentacles.zero?
+      = "Pentacles: #{count.pentacles}"
+      = "[ #{average.pentacles}% ]"
+  %li
+    - unless count.cups.zero?
+      = "Cups: #{count.cups}"
+      = "[ #{average.cups}% ]"
+  %li
+    - unless count.swords.zero?
+      = "Swords: #{count.swords}"
+      = "[ #{average.swords}% ]"
+  %li
+    - unless count.court_cards.zero?
+      = "Court cards: #{count.court_cards}"
+      = "[ #{average.court_cards}% ]"
+  %li
+    - unless count.reversed.zero?
+      = "Reversed cards: #{count.reversed}"
+      = "[ #{average.reversed}% ]"
+
+.sidebar-card-info
