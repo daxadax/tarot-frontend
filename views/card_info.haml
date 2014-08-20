@@ -1,8 +1,28 @@
-.bold Element:
-= card[:element]
-%br
-.bold Associations:
-= 'Stuggling with' if card[:reversed]
-= card[:associations].join(', ')
-as relates to
-= card[:domain].join(', ')
+.description
+  %h2.display-name
+    = card[:name]
+    %span.reversed
+
+  .clear
+
+  .bold Element:
+  = card[:element]
+
+  %p
+
+  .bold Domain:
+  = card[:domain].join(', ')
+
+  %p
+
+  .bold Associations:
+  = card[:associations].join(', ')
+
+  %p
+
+  .bold= "One possible reading of the #{card[:name]}:"
+  = "Struggling with" if card[:reversed]
+  = "#{card[:associations].sample} as relates to #{card[:domain].sample}"
+  = " things" unless card[:element] == 'air'
+
+.image-large= card[:image]

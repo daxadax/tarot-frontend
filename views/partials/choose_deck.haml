@@ -1,0 +1,9 @@
+.deck-container.inline-block
+  - deck_names.each_with_index do |deck, i|
+    .deck.uniq-btn.btn{:data => {:name => DECKS[i]}}= deck
+
+  .confirm.btn.hidden
+    Confirm
+
+.deck-info-container.hidden
+  .deck-info

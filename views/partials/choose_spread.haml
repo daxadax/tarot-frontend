@@ -1,0 +1,10 @@
+.spread-container.inline-block
+  - SPREADS.each do |name, value|
+    .spread.uniq-btn.btn{:data => { :name   => name, :number => value}}
+      = format(name)
+
+  .confirm.btn.hidden
+    Confirm
+
+.spread-info-container.hidden
+  .spread-info

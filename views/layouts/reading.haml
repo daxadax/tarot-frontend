@@ -2,16 +2,13 @@
 %head
   %title MYSTICAL STUFF
   %script{:src => 'javascript/jquery2.1.1.min.js'}
+  %script{:src => 'javascript/reading.js'}
   %link(rel="stylesheet" href='/stylesheets/base.css' type='text/css')
+  %link(rel="stylesheet" href='/stylesheets/reading.css' type='text/css')
 %body
   #header
     / =render :haml, :header
-  - if @reading
-    %script{:src => 'javascript/tarot.js'}
-    #sidebar
-      = render :haml, :sidebar,
-        :locals => { :count => count, :average => average }
-    #content
-      = yield
-  - else
+  = render_badges(badges)
+  = render :haml, :overlay, :locals => {:cards  => cards}
+  #content
     = yield

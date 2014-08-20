@@ -1,3 +1,5 @@
-%li.card{:data => data_for(card), :class => "#{card.suit} " "#{position}"}
-  =image_path(card)
-  %h5= card.display_name
+- deck      = deck      || nil
+- position  = position  || nil
+
+%li.card{:data => data_for(card), :class => "#{card.suit} #{position}"}
+  =image_path(card, deck)

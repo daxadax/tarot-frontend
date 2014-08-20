@@ -1,0 +1,10 @@
+#overlay.hidden
+  .card-info-panel
+    .back-to-spread back to spread
+    .card-info
+
+  .cards-dock
+    .cards-holder
+      - cards.each do |card|
+        .card
+          =render :haml, :card, :locals => {:card => card}
