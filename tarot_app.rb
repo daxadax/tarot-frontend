@@ -1,30 +1,46 @@
 require 'tarot'
 require 'sass'
+require 'json'
 
 class TarotApp < Sinatra::Application
-
-  DEFAULT_DECK    = :rider_waite
-  DEFAULT_SPREAD  = :enneagram
+  DECKS           = ["rider_waite", "the_herbal_tarot"]
+  SPREADS         = Tarot.const_get(:SPREADS)
+  BADGE_TYPES     = [:trumps, :wands, :pentacles, :cups, :swords, :reversed]
+  BADGE_THRESHOLD = 50
 
   get '/' do
-    haml :index
+    all = get_spread
+
+    haml :reading_config, :layout => 'layouts/reading_config'.to_sym,
+                :locals => {:cards => all.cards}
   end
 
   get '/reading' do
-    mark_as_reading
-
     spread = get_spread
-    haml spread_template, :locals => {
-      :cards    => spread.cards,
-      :count    => spread.count,
-      :average  => spread.average
+
+    haml spread_template,
+      :layout => 'layouts/reading'.to_sym,
+      :locals => {
+        :cards    => spread.cards,
+        :badges   => build_badges(spread.average)
+      }
+  end
+
+  post '/card_info' do
+    expires 500, :public, :must_revalidate
+
+    haml :card_info, {
+      :layout => false,
+      :locals => {:card => card}
     }
   end
 
-  get '/card_info' do
-    haml :card_info, :locals => {
-      :card => params[:card]
-    }
+  get '/deck_info/:deck' do
+    File.read("info/decks/#{params[:deck]}")
+  end
+
+  get '/spread_info/:spread' do
+    File.read("info/spreads/#{params[:spread]}")
   end
 
   private
@@ -34,23 +50,39 @@ class TarotApp < Sinatra::Application
   end
 
   def used_spread
-    return DEFAULT_SPREAD unless params[:used_spread]
+    return :all unless params[:spread]
 
-    params[:used_spread].to_sym
+    params[:spread].to_sym
   end
 
   def used_deck
-    return DEFAULT_DECK unless params[:used_deck]
-
-    params[:used_deck].to_sym
+    params[:deck].to_sym
   end
 
   def get_spread
-    Tarot::UseCases::BuildSpread.new(used_spread).call
+    input = {
+      :used_spread  => used_spread,
+      :cards        => specified_cards
+    }
+
+    Tarot::UseCases::DealForSpread.new(input).call
   end
 
   def mark_as_reading
     @reading = true
+  end
+
+  def specified_cards
+    return nil unless params[:specified_cards]
+    JSON.parse(params[:specified_cards]).map(&:to_s)
+  end
+
+  def card
+    params[:card]
+  end
+
+  def build_badges(average)
+    Badges.new(average).build
   end
 
 end
@@ -59,18 +91,43 @@ helpers do
 
   def data_for(card)
     {
-      :element      => card.element,
-      :domain       => card.domain,
-      :reversed     => card.is_reversed,
-      :associations => card.associations
+      :id             => card.id,
+      :name           => card.display_name,
+      :element        => card.element,
+      :domain         => card.domain,
+      :reversed       => card.is_reversed,
+      :associations   => card.associations,
+      :image          => image_path(card)
     }
   end
 
-  def image_path(card)
-    reversed  = ("class = 'reversed'" if card.is_reversed) || ''
-    path      = "/images/#{used_deck}/#{card.arcana}/#{card.id}.jpg"
+  def image_path(card, deck = nil)
+    deck = deck || used_deck
+
+    reversed  = ("class='reversed'" if card.is_reversed) || ''
+    path      = "/images/decks/#{deck}/#{card.arcana}/#{card.id}.jpg"
 
     "<img src=#{path} #{reversed} />"
+  end
+
+  def link_to(url,text=url,opts={})
+    attributes = ""
+    opts.each { |key,value| attributes << key.to_s << "=\"" << value << "\" "}
+    "<a href=\"#{url}\" #{attributes}>#{text}</a>"
+  end
+
+  def render_badges(badges)
+    render :haml, 'badges/index'.to_sym,  :locals => {:badges => badges}
+  end
+
+  def deck_names
+    @deck_names ||= TarotApp::DECKS.map do |deck|
+      format deck
+    end
+  end
+
+  def format(sym)
+    sym.to_s.split('_').each(&:capitalize!).join(' ')
   end
 
 end
