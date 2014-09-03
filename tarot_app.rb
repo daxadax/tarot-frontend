@@ -1,6 +1,7 @@
 require 'tarot'
 require 'sass'
 require 'json'
+require 'minidown'
 
 class TarotApp < Sinatra::Application
   DECKS           = ["rider_waite", "the_herbal_tarot"]
@@ -27,16 +28,26 @@ class TarotApp < Sinatra::Application
   end
 
   post '/card_info' do
-    expires 500, :public, :must_revalidate
+    # expires 500, :public, :must_revalidate
 
-    haml :card_info, {
+    haml 'partials/card_info'.to_sym, {
       :layout => false,
       :locals => {:card => card}
     }
   end
 
   get '/deck_info/:deck' do
-    File.read("info/decks/#{params[:deck]}")
+    deck          = params[:deck]
+    text_for_deck = File.read("info/decks/#{deck}")
+    image         = "<img src='/images/decks/#{deck}/major/01.jpg' />"
+
+    haml 'partials/deck_info'.to_sym, {
+      :layout => false,
+      :locals => {
+        :text => Minidown.render(text_for_deck),
+        :image => image
+      }
+    }
   end
 
   get '/spread_info/:spread' do
