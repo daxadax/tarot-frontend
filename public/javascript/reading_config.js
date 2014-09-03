@@ -14,7 +14,7 @@ $(document).ready( function() {
   });
 
   $('.card').click(function(){
-    var confirmButton = $('.imported-reading').find('.confirm');
+    var confirmButton = confirmButtonFor($('.imported-reading'));
 
     if(cardsLeftToPick() != 0){
       confirmButton.addClass('hidden');
@@ -25,21 +25,29 @@ $(document).ready( function() {
   });
 
   $('.deck-container').find('.deck').mousedown(function(){
+    var confirmButton = confirmButtonFor($('.deck-container'));
+
     handleDeckInfo($(this));
-    $('.deck-container').find('.confirm').removeClass('hidden');
+    if(activeDeckName() === undefined){
+      confirmButton.addClass('hidden');
+    } else {
+      confirmButton.removeClass('hidden');
+    };
   });
 
   $('.spread-container').find('.spread').mousedown(function(){
+    var confirmButton = confirmButtonFor($('.spread-container'));
+
     handleSpreadInfo($(this));
-    $('.spread-container').find('.confirm').removeClass('hidden');
+    if(activeSpreadName() === undefined){
+      confirmButton.addClass('hidden');
+    } else {
+      confirmButton.removeClass('hidden');
+    };
   });
 
   $('.deck-container').find('.confirm').mousedown(function(){
     showPaneAt('200%');
-  });
-
-  $('.spread-container').find('.btn').mousedown(function(){
-    $('.spread-container').find('.confirm').removeClass('hidden');
   });
 
   $('.spread-container').find('.confirm').mousedown(function(){
@@ -84,6 +92,10 @@ $(document).ready( function() {
     }).get();
 
     return cards;
+  };
+
+  var confirmButtonFor = function(el){
+    return el.find('.confirm');
   };
 
   var buildUrlForImportedReading = function(){
