@@ -61,8 +61,7 @@ class TarotApp < Sinatra::Application
   end
 
   def used_spread
-    return :all unless params[:spread]
-
+    return nil unless params[:spread]
     params[:spread].to_sym
   end
 
@@ -72,11 +71,11 @@ class TarotApp < Sinatra::Application
 
   def get_spread
     input = {
-      :used_spread  => used_spread,
-      :cards        => specified_cards
+      :quantity => cards_for(used_spread),
+      :cards => specified_cards
     }
 
-    Tarot::UseCases::DealForSpread.new(input).call
+    Tarot::UseCases::GetCards.new(input).call
   end
 
   def mark_as_reading
@@ -86,6 +85,17 @@ class TarotApp < Sinatra::Application
   def specified_cards
     return nil unless params[:specified_cards]
     JSON.parse(params[:specified_cards]).map(&:to_s)
+  end
+
+  def cards_for(spread)
+    quantity_mapping[spread]
+  end
+
+  def quantity_mapping
+    {
+      :three_card => 3,
+      :enneagram => 9
+    }
   end
 
   def card
