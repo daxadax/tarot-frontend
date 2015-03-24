@@ -4,9 +4,9 @@ require 'json'
 require 'minidown'
 
 class TarotApp < Sinatra::Application
-  DECKS           = ["rider_waite", "the_herbal_tarot"]
-  SPREADS         = Tarot.const_get(:SPREADS)
-  BADGE_TYPES     = [:trumps, :wands, :pentacles, :cups, :swords, :reversed]
+  DECKS = ["rider_waite", "the_herbal_tarot"]
+  SPREADS = [:three_card, :ennegram]
+  BADGE_TYPES = [:trumps, :wands, :pentacles, :cups, :swords, :reversed]
   BADGE_THRESHOLD = 50
 
   get '/' do
@@ -37,9 +37,9 @@ class TarotApp < Sinatra::Application
   end
 
   get '/deck_info/:deck' do
-    deck          = params[:deck]
+    deck = params[:deck]
     text_for_deck = File.read("info/decks/#{deck}")
-    image         = "<img src='/images/decks/#{deck}/major/01.jpg' />"
+    image = "<img src='/images/decks/#{deck}/major/01.jpg' />"
 
     haml 'partials/deck_info'.to_sym, {
       :layout => false,
@@ -102,13 +102,13 @@ helpers do
 
   def data_for(card)
     {
-      :id             => card.id,
-      :name           => card.display_name,
-      :element        => card.element,
-      :domain         => card.domain,
-      :reversed       => card.is_reversed,
-      :associations   => card.associations,
-      :image          => image_path(card)
+      :id => card.id,
+      :name => card.display_name,
+      :element => card.element,
+      :domain => card.domain,
+      :reversed => card.is_reversed,
+      :associations => card.associations,
+      :image => image_path(card)
     }
   end
 
