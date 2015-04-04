@@ -1,5 +1,5 @@
-- deck      = deck      || nil
-- position  = position  || nil
+- deck = deck || nil
+- position = position || nil
 
-%li.card{:data => data_for(card), :class => "#{card.suit} #{position}"}
+%li.card{data: { card_id: card.id, image_path: image_path(card) }, :class => "#{card.suit} #{position}"}
   =image_path(card, deck)

@@ -4,98 +4,66 @@ require 'json'
 require 'minidown'
 
 class TarotApp < Sinatra::Application
-  DECKS = ["rider_waite", "the_herbal_tarot"]
-  SPREADS = [:three_card, :ennegram]
+  DECKS = ["rider_waite"]
   BADGE_TYPES = [:trumps, :wands, :pentacles, :cups, :swords, :reversed]
   BADGE_THRESHOLD = 50
 
   get '/' do
-    all = get_spread
-
-    haml :reading_config, :layout => 'layouts/reading_config'.to_sym,
-                :locals => {:cards => all.cards}
+    redirect '/cards'
   end
 
-  get '/reading' do
+  get '/cards' do
     spread = get_spread
 
-    haml spread_template,
-      :layout => 'layouts/reading'.to_sym,
+    haml :all_cards,
       :locals => {
-        :cards    => spread.cards,
-        :badges   => build_badges(spread.average)
+        :cards => spread.cards.shuffle,
+        :badges => [] #build_badges(spread.average)
       }
   end
 
   post '/card_info' do
     # expires 500, :public, :must_revalidate
+    id = params[:id]
 
     haml 'partials/card_info'.to_sym, {
       :layout => false,
-      :locals => {:card => card}
+      :locals => {:card => get_card(id) }
     }
   end
 
-  get '/deck_info/:deck' do
-    deck = params[:deck]
-    text_for_deck = File.read("info/decks/#{deck}")
-    image = "<img src='/images/decks/#{deck}/major/01.jpg' />"
-
-    haml 'partials/deck_info'.to_sym, {
-      :layout => false,
-      :locals => {
-        :text => Minidown.render(text_for_deck),
-        :image => image
-      }
-    }
-  end
-
-  get '/spread_info/:spread' do
-    File.read("info/spreads/#{params[:spread]}")
+  get '/card_for_spread/:card_id' do
+    card = get_card(params[:card_id])
+    display_card card, false
   end
 
   private
 
-  def spread_template
-    "spreads/#{used_spread}".to_sym
-  end
-
-  def used_spread
-    return nil unless params[:spread]
-    params[:spread].to_sym
-  end
-
   def used_deck
-    params[:deck].to_sym
+    return :rider_waite
   end
 
-  def get_spread
+  def get_card(id)
     input = {
-      :quantity => cards_for(used_spread),
+      :quantity => 1,
+      :cards => [id]
+    }
+
+    get_spread(input).cards.first
+  end
+
+  def get_spread(input = nil)
+    input ||= {
+      :quantity => nil,
       :cards => specified_cards
     }
 
     Tarot::UseCases::GetCards.new(input).call
   end
 
-  def mark_as_reading
-    @reading = true
-  end
-
   def specified_cards
     return nil unless params[:specified_cards]
     JSON.parse(params[:specified_cards]).map(&:to_s)
-  end
-
-  def cards_for(spread)
-    quantity_mapping[spread]
-  end
-
-  def quantity_mapping
-    {
-      :three_card => 3,
-      :enneagram => 9
-    }
   end
 
   def card
@@ -110,6 +78,19 @@ end
 
 helpers do
 
+  def display_card(card, layout = nil)
+    haml :card, :layout => layout,
+    :locals => {
+      :card => card
+    }
+  end
+
+  def display_element_icon(element)
+    path = "/images/elements/#{element}.png"
+
+    "<img src=#{path}/>"
+  end
+
   def data_for(card)
     {
       :id => card.id,
@@ -119,14 +100,21 @@ helpers do
       :reversed => card.is_reversed,
       :associations => card.associations,
       :image => image_path(card)
-    }
+    }.to_json
+  end
+
+  def card_back(deck = nil)
+    deck = deck || used_deck
+    path = "/images/decks/#{deck}/backside.png"
+
+    "<img src=#{path} />"
   end
 
   def image_path(card, deck = nil)
     deck = deck || used_deck
 
     reversed  = ("class='reversed'" if card.is_reversed) || ''
-    path      = "/images/decks/#{deck}/#{card.arcana}/#{card.id}.jpg"
+    path = "/images/decks/#{deck}/#{card.arcana}/#{card.id}.jpg"
 
     "<img src=#{path} #{reversed} />"
   end
@@ -139,12 +127,6 @@ helpers do
 
   def render_badges(badges)
     render :haml, 'badges/index'.to_sym,  :locals => {:badges => badges}
-  end
-
-  def deck_names
-    @deck_names ||= TarotApp::DECKS.map do |deck|
-      format deck
-    end
   end
 
   def format(sym)

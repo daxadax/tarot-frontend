@@ -1,18 +1,22 @@
 $(document).ready( function() {
 
-  $('.card').mousedown(function() {
-    var data = $(this).data();
+  $('#content').on('click', '.card', function() {
+    var card_id = $(this).data('cardId'),
+          image_path = $(this).data('imagePath');
 
-    if( data.id === undefined ){
+    if( card_id === undefined ){
       return false;
     } else {
       showOverlay();
-      displayCardInfo(data);
+      displayCardInfo(card_id);
+      showLargeCard(image_path);
     }
   })
 
-  $('.back-to-spread').mousedown(function() {
-    hideOverlay();
+  $(document).on('keydown', function(key){
+    if (key.keyCode === 27){
+      hideLargeCard();
+    };
   });
 
   $('.badges').find('[class$=button]').mousedown(function(){
@@ -28,22 +32,12 @@ $(document).ready( function() {
     }
   });
 
-  var showOverlay = function(){
-    $('#overlay').removeClass('hidden');
+  var hideLargeCard = function(){
+    $('#large-card').addClass('hidden');
   };
 
-  var hideOverlay = function(){
-    $('#overlay').addClass('hidden');
-  };
-
-  var displayCardInfo = function(card_data){
-    $('.card-info').load(
-      'card_info', {card: card_data}
-    );
+  var showLargeCard = function(image_path){
+    $('#large-card').html( image_path ).removeClass( 'hidden' );
   };
 
 });
-
-
-
-

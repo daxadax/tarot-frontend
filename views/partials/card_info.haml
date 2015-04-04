@@ -1,28 +1,16 @@
-.description
+.description#current-card-info{data: {id: card.id }}
   %h2.display-name
-    = card[:name]
+    = display_element_icon(card.element)
+    = card.display_name
     %span.reversed
 
-  .clear
+  %p= "Domain: #{card.domain.join(', ')}"
 
-  .bold Element:
-  = card[:element]
+  %p= "Associations: #{card.associations.join(', ')}"
 
-  %p
-
-  .bold Domain:
-  = card[:domain].join(', ')
-
-  %p
-
-  .bold Associations:
-  = card[:associations].join(', ')
-
-  %p
-
-  .bold= "One possible reading of the #{card[:name]}:"
-  = "Struggling with" if card[:reversed]
-  = "#{card[:associations].sample} as relates to #{card[:domain].sample}"
-  = " things" unless card[:element] == 'air'
-
-.image-large= card[:image]
+  -# .bold= "One possible reading of the #{card.display_name}:"
+  -# = "Struggling with" if card.is_reversed
+  -# = "#{card.associations.sample} as relates to #{card.domain.sample}"
+  -# = " things" unless card.element == 'air'
+-#
+-# .image-large= card[:image]

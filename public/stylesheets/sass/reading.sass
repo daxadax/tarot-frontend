@@ -15,15 +15,6 @@
   border:       2px solid $dark-border
   margin-top:   2px
 
-@mixin overlay
-  z-index:    10
-  position:   fixed
-  left:       0
-  width:      100%
-  overflow:   hidden
-  background: $overlay
-
-
 // // // // // // //
 // main styling / //
 // // // // // // //
@@ -31,14 +22,27 @@
 html, body
   background-image: url('/images/background_wood.jpg')
 
+#spread
+  .row
+    margin-top: 2em
+
+#unseen-cards
+  margin-left: 50%
+  max-width:  130px
+  img
+    cursor: pointer
+    width:  133px
+
 #content
-  #spread
+  #cards-holder
+    width: 80%
+    margin-left: 5%
+    float: left
     .card
-      max-width:  135px
+      margin: 5px
+      max-width:  147px
       background: $card-background
-      // text-align: center
       img
-        border: 1px solid $dark-border
         width:  133px
     .trumps
       border: 7px solid $trump
@@ -50,48 +54,6 @@ html, body
       border: 7px solid $cups
     .swords
       border: 7px solid $swords
-
-    #spread-three-card
-      margin-top:       20%
-      margin-left:      31%
-      ul
-        display:        inline
-        li
-          margin-right: 43px
-          float:        left
-
-    #spread-enneagram
-      ul
-        display:  inline
-        .past
-          float: left
-        .future
-          float: right
-      .row-1
-        position: absolute
-        width:    11%
-        left:     45%
-        top:      2%
-      .row-2
-        position: absolute
-        width:    42%
-        left:     29%
-        top:      15%
-      .row-3
-        position: absolute
-        width:    69%
-        left:     15.5%
-        top:      30%
-      .row-4
-        position: absolute
-        bottom:   15%
-        width:    95%
-        left:     2.5%
-      .row-5
-        position: absolute
-        bottom:   2%
-        width:    44%
-        left:     28%
 
 .badges
   cursor:     pointer
@@ -125,52 +87,30 @@ html, body
     background: $swords
 
 #overlay
+  background: rgba(0, 0, 0, 0.8)
   color: white
   margin-left: 10px
-
   .card-info-panel
-    @include overlay
-    top:    0
-    height: 100%
-    .back-to-spread
-      cursor:         pointer
-      margin-left:    2%
-      margin-top:     1%
-      text-align:     center
-      width:          115px
-      height:         25px
-      line-height:     28px
-      background:     rgba(255,255,255,0.5)
-      color:          black
-      border:         2px solid $dark-border
+    position: absolute
+    z-index: 10
+    width: 70%
+    background: #111
     .card-info
-      margin-left:  2%
       .description
-        background:     rgba(0, 0, 0, 0.8)
-        float:          left
-        width:          40%
-        margin-top:     3%
-        margin-right:   2%
-        padding-bottom: 5%
-        padding-left:   5%
-        padding-right:  5%
+        padding: 3%
         .display-name
+          margin: 20px 0px
+          img
+            width: 30px
+            margin-bottom: 5px
           .reversed
-      .image-large
-        margin-top: -32px
-        img
-          width: 315px
-
-  .cards-dock
-    @include overlay
-    bottom:     0
-    height:     15%
-    text-align: center
-    .cards-holder
-      margin-top: 0.5%
-      display:    inline-block
-      .card
-        width:  80px
-        float:  left
-        img
-          width: 50px
+  #large-card
+    position: fixed
+    top: 0
+    left: 0
+    background: #111
+    width: 100%
+    z-index: 1
+    img
+      height: 100%
+      margin-left: 50%
