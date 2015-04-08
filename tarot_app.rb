@@ -98,7 +98,8 @@ helpers do
       :element => card.element,
       :domain => card.domain,
       :reversed => card.is_reversed,
-      :associations => card.associations,
+      :general_associations => card.associations.general,
+      :golden_dawn_associations => card.associations.golden_dawn,
       :image => image_path(card)
     }.to_json
   end
@@ -123,6 +124,11 @@ helpers do
     attributes = ""
     opts.each { |key,value| attributes << key.to_s << "=\"" << value << "\" "}
     "<a href=\"#{url}\" #{attributes}>#{text}</a>"
+  end
+
+  def display_associations(associations)
+    return associations if associations.is_a? String
+    associations.join(', ')
   end
 
   def render_badges(badges)

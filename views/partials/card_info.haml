@@ -4,13 +4,8 @@
     = card.display_name
     %span.reversed
 
-  %p= "Domain: #{card.domain.join(', ')}"
-
-  %p= "Associations: #{card.associations.join(', ')}"
-
-  -# .bold= "One possible reading of the #{card.display_name}:"
-  -# = "Struggling with" if card.is_reversed
-  -# = "#{card.associations.sample} as relates to #{card.domain.sample}"
-  -# = " things" unless card.element == 'air'
--#
--# .image-large= card[:image]
+  %p
+    = haml 'partials/domain_associations'.to_sym, locals: {card: card}
+    = haml 'partials/general_associations'.to_sym, locals: {card: card}
+    - if card.associations.golden_dawn
+      = haml 'partials/golden_dawn_associations'.to_sym, locals: {card: card}
