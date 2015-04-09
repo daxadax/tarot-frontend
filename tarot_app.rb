@@ -18,6 +18,7 @@ class TarotApp < Sinatra::Application
     haml :all_cards,
       :locals => {
         :cards => spread.cards.shuffle,
+        :moon => spread.moon,
         :badges => [] #build_badges(spread.average)
       }
   end
@@ -40,16 +41,14 @@ class TarotApp < Sinatra::Application
   private
 
   def used_deck
-    return :rider_waite
+    :rider_waite
   end
 
   def get_card(id)
-    input = {
-      :quantity => 1,
-      :cards => [id]
-    }
+    input = { :card_id => id }
+    result = Tarot::UseCases::GetCard.new(input).call
 
-    get_spread(input).cards.first
+    result.card
   end
 
   def get_spread(input = nil)

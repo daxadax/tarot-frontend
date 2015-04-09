@@ -95,7 +95,45 @@ html, body
     z-index: 10
     width: 70%
     background: #111
+    .moon-info
+      position: relative
+      overflow: hidden
+      float: right
+      width: 25%
+      .moon-info-inner
+        margin-top: 8em
+        padding: 3%
+      #the-light-moon
+        position: absolute
+        top: 2.5em
+        right: 2em
+        width: 100px
+        height: 100px
+        margin-right: auto
+        margin-left: auto
+        background: #eee
+        -moz-border-radius: 50px
+        -webkit-border-radius: 50px
+        border-radius: 50px
+        .waning
+        .waxing
+      #the-dark-moon
+        position: absolute
+        top: 2.5em
+        right: 2em
+        width: 100px
+        height: 100px
+        margin-right: auto
+        margin-left: auto
+        background: #111
+        -moz-border-radius: 50px
+        -webkit-border-radius: 50px
+        border-radius: 50px
+        .waning
+        .waxing
     .card-info
+      float: left
+      width: 75%
       .description
         padding: 3%
         .display-name

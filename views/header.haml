@@ -1,6 +1,6 @@
 #spread{ data: { cards: cards.map {|c| c.id} }}
   .row
     .col-md-8
-      = render :haml, :overlay, :locals => {:cards  => cards}
+      = render :haml, :overlay, locals: { cards: cards, moon: moon}
     .col-md-4
       #unseen-cards= card_back

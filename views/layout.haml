@@ -6,7 +6,7 @@
   %link(rel="stylesheet" href='/stylesheets/reading.css' type='text/css')
 %body
   #header
-  = render :haml, :header, :locals => {cards: cards}
+  = render :haml, :header, locals: {cards: cards, moon: moon}
   = render_badges(badges)
   #content
     = yield

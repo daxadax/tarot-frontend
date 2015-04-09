@@ -1,6 +1,14 @@
 #overlay.hidden
   #large-card.hidden
   .card-info-panel
+    .moon-info.center
+      %h4 Luna
+      #the-light-moon{class: (moon.is_waxing ? 'waxing' : 'waning')}
+      #the-dark-moon{class: (moon.is_waxing ? 'waning' : 'waxing')}
+      .moon-info-inner
+        .moon-age= "#{moon.age} days old"
+        .moon-illumination= "#{moon.illumination * 100}% illuminated"
+        .moon-phase= moon.phase.capitalize
     .card-info
       .center
         %img{:src => '/images/ajax-loader.gif'}
