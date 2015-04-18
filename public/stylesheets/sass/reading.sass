@@ -36,6 +36,7 @@ html, body
 #content
   #cards-holder
     width: 80%
+    margin-top: 2%
     margin-left: 5%
     float: left
     .card
@@ -98,39 +99,33 @@ html, body
     .moon-info
       position: relative
       overflow: hidden
-      float: right
+      float: left
       width: 25%
       .moon-info-inner
         margin-top: 8em
         padding: 3%
-      #the-light-moon
-        position: absolute
-        top: 2.5em
-        right: 2em
-        width: 100px
-        height: 100px
-        margin-right: auto
-        margin-left: auto
-        background: #eee
-        -moz-border-radius: 50px
-        -webkit-border-radius: 50px
-        border-radius: 50px
-        .waning
-        .waxing
-      #the-dark-moon
-        position: absolute
-        top: 2.5em
-        right: 2em
-        width: 100px
-        height: 100px
-        margin-right: auto
-        margin-left: auto
-        background: #111
-        -moz-border-radius: 50px
-        -webkit-border-radius: 50px
-        border-radius: 50px
-        .waning
-        .waxing
+      #the-moon
+        #dark-moon
+          // transform: rotateX(-14deg) rotateY(-164deg) translateZ(2px)
+          position: absolute
+          background: rgba(17,17,17, 0.95)
+          top: 2.5em
+          left: 2em
+          width: 100px
+          height: 100px
+          margin-right: auto
+          margin-left: auto
+          -webkit-border-radius: 50px
+          -moz-border-radius: 50px
+          border-radius: 50px
+        img
+          position: absolute
+          top: 2.5em
+          left: 2em
+          width: 100px
+          height: 100px
+          margin-right: auto
+          margin-left: auto
     .card-info
       float: left
       width: 75%

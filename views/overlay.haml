@@ -2,13 +2,7 @@
   #large-card.hidden
   .card-info-panel
     .moon-info.center
-      %h4 Luna
-      #the-light-moon{class: (moon.is_waxing ? 'waxing' : 'waning')}
-      #the-dark-moon{class: (moon.is_waxing ? 'waning' : 'waxing')}
-      .moon-info-inner
-        .moon-age= "#{moon.age} days old"
-        .moon-illumination= "#{moon.illumination * 100}% illuminated"
-        .moon-phase= moon.phase.capitalize
+      = haml 'partials/moon_info'.to_sym, locals: {moon: moon}
     .card-info
       .center
         %img{:src => '/images/ajax-loader.gif'}
