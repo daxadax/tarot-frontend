@@ -1,5 +1,5 @@
 $(document).ready( function() {
-
+  
   $('#content').on('click', '.card', function() {
     var card_id = $(this).data('cardId'),
           image_path = $(this).data('imagePath');
