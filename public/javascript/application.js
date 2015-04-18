@@ -18,7 +18,7 @@ var displayCardInfo = function(card_id){
   } else {
     displayAjaxLoader('.card-info');
     $('.card-info').load(
-      'card_info', {'id': card_id}
+      'card_info', {'card_id': card_id}
     );
   }
 };

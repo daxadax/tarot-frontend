@@ -13,7 +13,7 @@ class TarotApp < Sinatra::Application
   end
 
   get '/cards' do
-    spread = get_spread
+    spread = build_deck
 
     haml :all_cards,
       :locals => {
@@ -25,11 +25,9 @@ class TarotApp < Sinatra::Application
 
   post '/card_info' do
     # expires 500, :public, :must_revalidate
-    id = params[:id]
-
     haml 'partials/card_info'.to_sym, {
       :layout => false,
-      :locals => {:card => get_card(id) }
+      :locals => {:card => get_card(params[:card_id]) }
     }
   end
 
@@ -51,10 +49,10 @@ class TarotApp < Sinatra::Application
     result.card
   end
 
-  def get_spread(input = nil)
+  def build_deck(input = nil)
     input ||= {
       :quantity => nil,
-      :cards => specified_cards
+      :cards => nil # specified_cards
     }
 
     Tarot::UseCases::GetCards.new(input).call
@@ -63,10 +61,6 @@ class TarotApp < Sinatra::Application
   def specified_cards
     return nil unless params[:specified_cards]
     JSON.parse(params[:specified_cards]).map(&:to_s)
-  end
-
-  def card
-    params[:card]
   end
 
   def build_badges(average)
