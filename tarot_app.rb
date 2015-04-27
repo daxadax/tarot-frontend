@@ -113,6 +113,12 @@ helpers do
     "<img src=#{path} #{reversed} />"
   end
 
+  def fetch_moon_image(moon_age)
+    age = (moon_age % 27).to_i
+
+    "/images/luna/#{age}.png"
+  end
+
   def link_to(url,text=url,opts={})
     attributes = ""
     opts.each { |key,value| attributes << key.to_s << "=\"" << value << "\" "}

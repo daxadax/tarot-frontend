@@ -1,10 +1,7 @@
-%h4 Luna
 #the-moon
-  -# moon image from http://bit.ly/1GVa7vD
-  %img{src: "/images/luna.png"}
-  #dark-moon
+  // moon images from http://www.danmorgan.org/wordpress/?p=618
+  %img{src: fetch_moon_image(moon.age)}
 .moon-info-inner
-  FIX MOON SHADOW
   .moon-age= "#{moon.age} days old"
   .moon-illumination= "#{(moon.illumination * 100).round}% illuminated"
   .moon-phase= format(moon.phase)
