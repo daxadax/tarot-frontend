@@ -10,7 +10,6 @@ GEM
     bound (2.1.0)
     haml (4.0.5)
       tilt
-    minidown (2.1.1)
     rack (1.5.2)
     rack-protection (1.5.3)
       rack
@@ -28,7 +27,6 @@ PLATFORMS
 
 DEPENDENCIES
   haml
-  minidown
   sass
   shotgun
   sinatra
