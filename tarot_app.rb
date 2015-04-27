@@ -2,6 +2,7 @@ require 'tarot'
 require 'sass'
 require 'json'
 require 'minidown'
+require './presenters/moon_presenter'
 
 class TarotApp < Sinatra::Application
   DECKS = ["rider_waite"]
@@ -18,7 +19,7 @@ class TarotApp < Sinatra::Application
     haml :all_cards,
       :locals => {
         :cards => spread.cards.shuffle,
-        :moon => spread.moon,
+        :moon => MoonPresenter.new(spread.moon),
         :badges => [] #build_badges(spread.average)
       }
   end
@@ -111,12 +112,6 @@ helpers do
     path = "/images/decks/#{deck}/#{card.arcana}/#{card.id}.jpg"
 
     "<img src=#{path} #{reversed} />"
-  end
-
-  def fetch_moon_image(moon_age)
-    age = (moon_age % 27).to_i
-
-    "/images/luna/#{age}.png"
   end
 
   def link_to(url,text=url,opts={})

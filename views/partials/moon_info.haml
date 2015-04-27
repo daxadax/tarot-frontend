@@ -1,7 +1,7 @@
 #the-moon
   // moon images from http://www.danmorgan.org/wordpress/?p=618
-  %img{src: fetch_moon_image(moon.age)}
+  %img{ src: moon.image_path }
 .moon-info-inner
-  .moon-age= "#{moon.age} days old"
-  .moon-illumination= "#{(moon.illumination * 100).round}% illuminated"
+  .moon-age= "#{ moon.age } days old"
+  .moon-illumination= "#{ moon.percent_illuminated }% illuminated"
   .moon-phase= format(moon.phase)
