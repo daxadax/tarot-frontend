@@ -7,7 +7,6 @@
 %body
   #header
   = render :haml, :header, locals: {cards: cards, moon: moon}
-  = render_badges(badges)
   #content
     = yield
 

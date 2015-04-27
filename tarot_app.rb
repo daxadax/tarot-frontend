@@ -6,8 +6,6 @@ require './presenters/moon_presenter'
 
 class TarotApp < Sinatra::Application
   DECKS = ["rider_waite"]
-  BADGE_TYPES = [:trumps, :wands, :pentacles, :cups, :swords, :reversed]
-  BADGE_THRESHOLD = 50
 
   get '/' do
     redirect '/cards'
@@ -19,8 +17,7 @@ class TarotApp < Sinatra::Application
     haml :all_cards,
       :locals => {
         :cards => spread.cards.shuffle,
-        :moon => MoonPresenter.new(spread.moon),
-        :badges => [] #build_badges(spread.average)
+        :moon => MoonPresenter.new(spread.moon)
       }
   end
 
@@ -62,10 +59,6 @@ class TarotApp < Sinatra::Application
   def specified_cards
     return nil unless params[:specified_cards]
     JSON.parse(params[:specified_cards]).map(&:to_s)
-  end
-
-  def build_badges(average)
-    Badges.new(average).build
   end
 
 end
@@ -123,10 +116,6 @@ helpers do
   def display_associations(associations)
     return associations if associations.is_a? String
     associations.join(', ')
-  end
-
-  def render_badges(badges)
-    render :haml, 'badges/index'.to_sym,  :locals => {:badges => badges}
   end
 
   def format(sym)

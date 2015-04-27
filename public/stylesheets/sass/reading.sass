@@ -56,37 +56,6 @@ html, body
     .swords
       border: 7px solid $swords
 
-.badges
-  cursor:     pointer
-  z-index:    20
-  position:   absolute
-  width:      23%
-  right:      0
-  top:        5px
-  text-align: center
-  margin-top: 5px
-  [class$="button"]
-    @include sidebar-button
-  [class$="info"]
-    @include sidebar-button
-    background: $overlay
-    color:      white
-    height:     250px
-  .no-badges-button
-    background: $alert
-  .reversed-button
-    background: $alert
-  .trumps-button
-    background: $trump
-  .wands-button
-    background: $wands
-  .pentacles-button
-    background: $pentacles
-  .cups-button
-    background: $cups
-  .swords-button
-    background: $swords
-
 #overlay
   background: rgba(0, 0, 0, 0.8)
   color: white

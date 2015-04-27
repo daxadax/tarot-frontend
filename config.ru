@@ -9,6 +9,4 @@ use Sass::Plugin::Rack
 Bundler.require
 
 require './tarot_app'
-require './lib/badges.rb'
-
 run TarotApp
