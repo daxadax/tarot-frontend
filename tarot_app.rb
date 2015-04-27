@@ -1,6 +1,4 @@
 class TarotApp < Sinatra::Application
-  DECKS = ["rider_waite"]
-
   get '/' do
     redirect '/cards'
   end
