@@ -1,9 +1,3 @@
-require 'tarot'
-require 'sass'
-require 'json'
-require 'minidown'
-require './presenters/moon_presenter'
-
 class TarotApp < Sinatra::Application
   DECKS = ["rider_waite"]
 
