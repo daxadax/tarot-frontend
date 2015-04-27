@@ -28,15 +28,11 @@ class TarotApp < Sinatra::Application
 
   private
 
-  def used_deck
-    :rider_waite
-  end
-
   def get_card(id)
     input = { :card_id => id }
     result = Tarot::UseCases::GetCard.new(input).call
 
-    result.card
+    CardPresenter.new(result.card)
   end
 
   def build_deck(input = nil)
@@ -56,7 +52,6 @@ class TarotApp < Sinatra::Application
 end
 
 helpers do
-
   def display_card(card, layout = nil)
     haml :card, :layout => layout,
     :locals => {
@@ -64,39 +59,9 @@ helpers do
     }
   end
 
-  def display_element_icon(element)
-    path = "/images/elements/#{element}.png"
-
-    "<img src=#{path}/>"
-  end
-
-  def data_for(card)
-    {
-      :id => card.id,
-      :name => card.display_name,
-      :element => card.element,
-      :domain => card.domain,
-      :reversed => card.is_reversed,
-      :general_associations => card.associations.general,
-      :golden_dawn_associations => card.associations.golden_dawn,
-      :image => image_path(card)
-    }.to_json
-  end
-
-  def card_back(deck = nil)
-    deck = deck || used_deck
-    path = "/images/decks/#{deck}/backside.png"
-
+  def display_card_back_design
+    path = "/images/decks/rider_waite/backside.png"
     "<img src=#{path} />"
-  end
-
-  def image_path(card, deck = nil)
-    deck = deck || used_deck
-
-    reversed  = ("class='reversed'" if card.is_reversed) || ''
-    path = "/images/decks/#{deck}/#{card.arcana}/#{card.id}.jpg"
-
-    "<img src=#{path} #{reversed} />"
   end
 
   def link_to(url,text=url,opts={})

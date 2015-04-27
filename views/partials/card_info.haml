@@ -1,6 +1,6 @@
 .description#current-card-info{data: {id: card.id }}
   %h2.display-name
-    = display_element_icon(card.element)
+    = card.element_image_path
     -# = card.astrological_sign if card.has_astrological_designation
     = card.display_name
     %span.reversed
