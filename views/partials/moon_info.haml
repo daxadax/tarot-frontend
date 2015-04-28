@@ -1,0 +1,7 @@
+#the-moon
+  // moon images from http://www.danmorgan.org/wordpress/?p=618
+  %img{ src: moon.image_path }
+.moon-info-inner
+  .moon-illumination= "#{ moon.percent_illuminated }% illuminated"
+  .moon-age= "#{ moon.age } days old"
+  .moon-phase= format(moon.phase)

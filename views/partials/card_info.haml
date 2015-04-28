@@ -1,28 +1,12 @@
-.description
+.description#current-card-info{data: {id: card.id }}
   %h2.display-name
-    = card[:name]
+    = card.element_image_path
+    -# = card.astrological_sign if card.has_astrological_designation
+    = card.display_name
     %span.reversed
 
-  .clear
-
-  .bold Element:
-  = card[:element]
-
   %p
-
-  .bold Domain:
-  = card[:domain].join(', ')
-
-  %p
-
-  .bold Associations:
-  = card[:associations].join(', ')
-
-  %p
-
-  .bold= "One possible reading of the #{card[:name]}:"
-  = "Struggling with" if card[:reversed]
-  = "#{card[:associations].sample} as relates to #{card[:domain].sample}"
-  = " things" unless card[:element] == 'air'
-
-.image-large= card[:image]
+    = haml 'partials/domain_associations'.to_sym, locals: {card: card}
+    = haml 'partials/general_associations'.to_sym, locals: {card: card}
+    - if card.associations.golden_dawn
+      = haml 'partials/golden_dawn_associations'.to_sym, locals: {card: card}

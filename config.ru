@@ -2,6 +2,8 @@ require 'rubygems'
 require 'bundler/setup'
 require 'tarot'
 require 'sass/plugin/rack'
+require 'sass'
+require 'json'
 
 Sass::Plugin.options[:style] = :compressed
 use Sass::Plugin::Rack
@@ -9,6 +11,6 @@ use Sass::Plugin::Rack
 Bundler.require
 
 require './tarot_app'
-require './lib/badges.rb'
+Dir.glob('./presenters/*.rb') { |f| require f }
 
 run TarotApp

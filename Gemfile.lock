@@ -1,5 +1,6 @@
-PATH
-  remote: ../tarot_backend
+GIT
+  remote: https://github.com/daxadax/tarot_backend.git
+  revision: 73249ea8a23f3c1d1c26a483b21dd328990f4f13
   specs:
     tarot (0.0.1)
       bound
@@ -10,7 +11,6 @@ GEM
     bound (2.1.0)
     haml (4.0.5)
       tilt
-    minidown (2.1.1)
     rack (1.5.2)
     rack-protection (1.5.3)
       rack
@@ -28,7 +28,6 @@ PLATFORMS
 
 DEPENDENCIES
   haml
-  minidown
   sass
   shotgun
   sinatra

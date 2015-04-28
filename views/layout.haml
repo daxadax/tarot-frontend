@@ -1,0 +1,16 @@
+%html
+%head
+  %title MYSTICAL STUFF
+  %link(rel="stylesheet" href='/stylesheets/base.css' type='text/css')
+  %link(rel="stylesheet" href='/stylesheets/bootstrap.min.css' type='text/css')
+  %link(rel="stylesheet" href='/stylesheets/reading.css' type='text/css')
+%body
+  #header
+  = render :haml, :header, locals: {cards: cards, moon: moon}
+  #content
+    = yield
+
+%script{:src => 'javascript/jquery2.1.1.min.js'}
+%script{src: 'javascript/application.js'}
+%script{:src => 'javascript/reading.js'}
+%script{:src => 'javascript/card_flipper.js'}
