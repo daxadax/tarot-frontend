@@ -1,33 +1,18 @@
-
-// // // // // // // // //
-// mixins and imports / //
-// // // // // // // // //
+// mixins and imports
 
 @import 'base'
 +base_rules
 
-@mixin sidebar-button
-  color:        black
-  width:        90%
-  margin-left:  auto
-  margin-right: auto
-  padding:      5px
-  border:       2px solid $dark-border
-  margin-top:   2px
-
-// // // // // // //
-// main styling / //
-// // // // // // //
+// main styling
 
 html, body
   background-image: url('/images/background_wood.jpg')
 
 #spread
-  .row
-    margin-top: 2em
+  margin-top: 2em
 
 #unseen-cards
-  margin-left: 50%
+  margin-left: 20%
   max-width:  130px
   img
     cursor: pointer
@@ -57,29 +42,21 @@ html, body
       border: 7px solid $swords
 
 #overlay
-  background: rgba(0, 0, 0, 0.8)
-  color: white
+  background: $overlay
+  color: $text-color
   margin-left: 10px
   .card-info-panel
-    position: absolute
-    z-index: 10
-    width: 70%
-    background: #111
     .moon-info
-      position: relative
-      float: left
-      width: 25%
       .moon-info-inner
         padding: 3%
       #the-moon
         overflow: hidden
         img
           padding: 10px
-          width: 100%
+          width: 85%
           transform: rotateZ(70deg)
     .card-info
-      float: left
-      width: 75%
+      z-index: 1
       .description
         padding: 3%
         .display-name
@@ -92,7 +69,7 @@ html, body
     position: fixed
     top: 0
     left: 0
-    background: #111
+    background: $large-card-background
     width: 100%
     z-index: 1
     img

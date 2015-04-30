@@ -10,12 +10,14 @@ $(document).ready( function() {
       showOverlay();
       displayCardInfo(card_id);
       showLargeCard(image_path);
+      $('.card-info').addClass('absolute')
     }
   })
 
   $(document).on('keydown', function(key){
     if (key.keyCode === 27){
       hideLargeCard();
+      $('.card-info').removeClass('absolute')
     };
   });
 
