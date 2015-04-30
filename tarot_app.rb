@@ -7,10 +7,16 @@ class TarotApp < Sinatra::Application
     spread = build_deck
 
     haml :all_cards,
+      :layout => 'layouts/reading'.to_sym,
       :locals => {
         :cards => spread.cards.shuffle,
         :moon => MoonPresenter.new(spread.moon)
       }
+  end
+
+  get '/about' do
+    haml :about,
+      :layout => 'layouts/about'.to_sym
   end
 
   post '/card_info' do

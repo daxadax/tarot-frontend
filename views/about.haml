@@ -1,0 +1,21 @@
+.row
+  #about.col-md-9
+    %h1 name_of_site
+    %h4
+      name_of_site makes Tarot more accessible to everyone.
+    %p
+      We provide tools and visualisations to help you connect more deeply
+      with each card you draw.
+    %p
+      Planned updates include:
+      %ul
+        %li More data for each card in the Major and Minor arcana
+        %li Popular layouts such as the Celtic Cross
+        %li User accounts to save, track and share your reading history
+        %li Custom card associations
+        %li More Tarot decks available
+  #donate.col-md-3
+    = haml 'partials/donate'.to_sym
+.row
+  #contact
+    = haml 'partials/contact'.to_sym
