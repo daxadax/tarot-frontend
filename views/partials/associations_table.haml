@@ -1,0 +1,11 @@
+%table.table-responsive
+  %tr.elemental-associations
+    %th Elemental
+    %td= display_associations(card.domain)
+  %tr.general-associations
+    %th General
+    %td= display_associations(card.associations.general)
+  - if card.associations.golden_dawn
+    %tr.golden-dawn-associations
+      %th Golden Dawn
+      %td= display_associations(card.associations.golden_dawn)

@@ -1,12 +1,9 @@
 .description#current-card-info{data: {id: card.id }}
-  %h2.display-name
+  %h1.display-name
     = card.element_image_path
     -# = card.astrological_sign if card.has_astrological_designation
     = card.display_name
-    %span.reversed
 
-  %p
-    = haml 'partials/domain_associations'.to_sym, locals: {card: card}
-    = haml 'partials/general_associations'.to_sym, locals: {card: card}
-    - if card.associations.golden_dawn
-      = haml 'partials/golden_dawn_associations'.to_sym, locals: {card: card}
+  %h4 Associations
+  .associations
+    = haml 'partials/associations_table'.to_sym, locals: {card: card}
