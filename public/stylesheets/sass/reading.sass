@@ -3,6 +3,8 @@
 @import 'base'
 +base_rules
 
+$card-width: 149px
+
 // main styling
 
 html, body
@@ -10,26 +12,30 @@ html, body
 
 #spread
   margin-top: 2em
-
-#unseen-cards
-  margin-left: 20%
-  max-width:  130px
-  img
-    cursor: pointer
-    width:  133px
+  #info
+    float: left
+    width: 75%
+  #unseen-cards
+    float: right
+    width: 15%
+    margin-right: 7%
+    max-width:  130px
+    img
+      cursor: pointer
+      width:  133px
 
 #content
   #cards-holder
-    width: 80%
-    margin-top: 2%
+    display: inline-block
+    width: 90%
     margin-left: 5%
-    float: left
+    margin-top: 2%
     .card
+      float: left
       margin: 5px
-      max-width:  147px
       background: $card-background
       img
-        width:  133px
+        width: $card-width
     .trumps
       border: 7px solid $trump
     .wands
@@ -42,32 +48,42 @@ html, body
       border: 7px solid $swords
 
 #overlay
+  overflow: auto
   background: $overlay
   color: $text-color
-  margin-left: 10px
-  .card-info-panel
+  margin-left: 20px
+  #info-panel
     .moon-info
+      width: 20%
+      float: left
       .moon-info-inner
         padding: 3%
       #the-moon
         overflow: hidden
         img
           padding: 10px
-          width: 85%
+          width: 75%
           transform: rotateZ(70deg)
     .card-info
+      width: 75%
+      margin-left: 3%
+      float: left
       z-index: 1
       .description
         .display-name
           img
             width: 30px
-            margin-bottom: 5px
+            margin-bottom: -2px
         .associations
-          table
-            color: $text-color
-            tr
+          ul
+            margin-left: -3%
+            li
               padding-top: 5px
-              th
+              padding-bottom: 2px
+              margin-right: 10%
+              border-bottom: 1px solid $border
+              .title
+                text-align: right
                 padding-right: 10px
   #large-card
     position: fixed

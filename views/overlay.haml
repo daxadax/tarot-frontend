@@ -1,9 +1,8 @@
 #overlay.hidden
   #large-card.hidden
-  .card-info-panel
-    .row
-      .moon-info.center.col-sm-3
-        = haml 'partials/moon_info'.to_sym, locals: {moon: moon}
-      .card-info.col-sm-9
-        .center
-          %img{:src => '/images/ajax-loader.gif'}
+  #info-panel
+    .moon-info.center
+      = haml 'partials/moon_info'.to_sym, locals: {moon: moon}
+    .card-info
+      .center
+        %img{:src => '/images/ajax-loader.gif'}

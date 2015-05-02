@@ -1,21 +1,23 @@
-.row
-  #about.col-md-9
-    %h1 name_of_site
-    %h4
-      name_of_site makes Tarot more accessible to everyone.
-    %p
-      We provide tools and visualisations to help you connect more deeply
+#about
+  %h1.main-title.float-left Tarottor
+  %h3.sub-title.float-left your tarot servitor
+  #body
+    %p.clear
+      Tarottor provides tools and visualisations to help you connect more deeply
       with each card you draw.
+    %p
+      This allows you to use your energy to understand the relationships reflected
+      in response to your query rather than figuring out what each card means and
+      how they fit together.
     %p
       Planned updates include:
       %ul
         %li More data for each card in the Major and Minor arcana
-        %li Popular layouts such as the Celtic Cross
+        %li Visual representations of popular layouts such as the Celtic Cross
         %li User accounts to save, track and share your reading history
         %li Custom card associations
         %li More Tarot decks available
-  #donate.col-md-3
-    = haml 'partials/donate'.to_sym
-.row
-  #contact
-    = haml 'partials/contact'.to_sym
+#donate
+  = haml 'partials/donate'.to_sym
+#contact
+  = haml 'partials/contact'.to_sym
