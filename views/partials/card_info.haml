@@ -4,6 +4,5 @@
     -# = card.astrological_sign if card.has_astrological_designation
     = card.display_name
 
-  %h4 Associations
   .associations
     = haml 'partials/associations_table'.to_sym, locals: {card: card}
