@@ -1,0 +1,12 @@
+%h3 Associations
+%ul
+  %li.elemental-associations
+    %span.title.bold Elemental
+    = display_associations(card.domain)
+  %li.general-associations
+    %span.title.bold General
+    = display_associations(card.associations.general)
+    - if card.associations.golden_dawn
+      %li.golden-dawn-associations
+        %span.title.bold Golden Dawn
+        = display_associations(card.associations.golden_dawn)
