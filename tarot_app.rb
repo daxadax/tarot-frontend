@@ -76,11 +76,6 @@ helpers do
     "<a href=\"#{url}\" #{attributes}>#{text}</a>"
   end
 
-  def display_associations(associations)
-    return associations if associations.is_a? String
-    associations.join(', ')
-  end
-
   def format(sym)
     sym.to_s.split('_').each(&:capitalize!).join(' ')
   end

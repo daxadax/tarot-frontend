@@ -23,12 +23,16 @@ class CardPresenter
     card.display_name
   end
 
-  def associations
-    card.associations
+  def elemental_associations
+    card.domain.join(', ')
   end
 
-  def domain
-    card.domain
+  def general_associations
+    card.associations.general.join(', ')
+  end
+
+  def golden_dawn_associations
+    card.associations.golden_dawn.join(', ')
   end
 
   def reversed?
