@@ -1,0 +1,22 @@
+%h3 Correspondence
+%ul.astrological-correspondence
+  - card.astrological_signs.each do |sign|
+    %li.sign
+      = astrological_image(sign)
+
+%ul.rank-correspondence
+  %li.rank
+    = card.display_rank
+    = card.rank_correspondence 
+
+%ul.elemental-correspondence
+  - card.elements.each do |element|
+    %li.element
+      = elemental_image(element)
+      = static_correspondences.elemental[element]
+
+- if card.golden_dawn_correspondence
+  %ul
+    %li.golden-dawn-correspondence
+      %span.title.bold Golden Dawn
+      = card.golden_dawn_correspondence

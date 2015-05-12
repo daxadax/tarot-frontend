@@ -1,8 +1,6 @@
 .description#current-card-info{data: {id: card.id }}
   %h1.display-name
-    = card.element_image_path
-    -# = card.astrological_sign if card.has_astrological_designation
     = card.display_name
 
-  .associations
-    = haml 'partials/associations'.to_sym, locals: {card: card}
+  .correspondence
+    = haml 'partials/correspondence'.to_sym, locals: {card: card}
