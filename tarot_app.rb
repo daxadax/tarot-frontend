@@ -38,7 +38,7 @@ class TarotApp < Sinatra::Application
     input = { :card_id => id }
     result = Tarot::UseCases::GetCard.new(input).call
 
-    CardPresenter.new(result.card)
+    CardPresenter.new(result.card, static_correspondences)
   end
 
   def build_deck(input = nil)
@@ -50,9 +50,17 @@ class TarotApp < Sinatra::Application
     Tarot::UseCases::GetCards.new(input).call
   end
 
+  def static_correspondences
+    @static_correspondences ||= fetch_static_correspondences
+  end
+
   def specified_cards
     return nil unless params[:specified_cards]
     JSON.parse(params[:specified_cards]).map(&:to_s)
+  end
+
+  def fetch_static_correspondences
+    Tarot::UseCases::GetStaticCorrespondences.new.call
   end
 
 end
@@ -68,6 +76,17 @@ helpers do
   def display_card_back_design
     path = "/images/decks/rider_waite/backside.png"
     "<img src=#{path} />"
+  end
+
+  def astrological_image(sign)
+    source = "src=/images/symbols/#{sign}.png"
+    title = "title=#{sign}"
+
+    "<img #{source} #{title}>"
+  end
+
+  def elemental_image(element)
+    "<img src=/images/symbols/#{element}.png/>"
   end
 
   def link_to(url,text=url,opts={})
