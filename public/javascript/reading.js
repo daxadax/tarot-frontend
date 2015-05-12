@@ -10,16 +10,26 @@ $(document).ready( function() {
       showOverlay();
       displayCardInfo(card_id);
       showLargeCard(image_path);
-      $('.card-info').addClass('absolute')
+      shrinkCardInfo();
     }
   })
 
   $(document).on('keydown', function(key){
     if (key.keyCode === 27){
       hideLargeCard();
-      $('.card-info').removeClass('absolute')
+      resizeCardInfo();
     };
   });
+
+  var shrinkCardInfo = function(){
+    $('.card-info').addClass('absolute')
+    $('.card-info').css('width', '49%')
+  }
+
+  var resizeCardInfo = function(){
+    $('.card-info').removeClass('absolute')
+    $('.card-info').css('width', '75%')
+  }
 
   var hideLargeCard = function(){
     $('#large-card').addClass('hidden');
