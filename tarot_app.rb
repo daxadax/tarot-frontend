@@ -75,7 +75,7 @@ helpers do
 
   def display_card_back_design
     path = "/images/decks/rider_waite/backside.png"
-    "<img src=#{path} />"
+    "<img src=#{path}>"
   end
 
   def astrological_image(sign)
@@ -86,7 +86,10 @@ helpers do
   end
 
   def elemental_image(element)
-    "<img src=/images/symbols/#{element}.png/>"
+    source = "src=/images/symbols/#{element}.png"
+    title = "title=#{element}"
+
+    "<img #{source} #{title}>"
   end
 
   def link_to(url,text=url,opts={})
