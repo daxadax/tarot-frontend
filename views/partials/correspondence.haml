@@ -2,6 +2,7 @@
   - card.astrological_signs.each do |sign|
     %li.astrological-correspondence
       %span.title= astrological_image(sign)
+      = static_correspondences.astrological[sign]
 
   - card.elements.each do |element|
     %li.elemental-correspondence
