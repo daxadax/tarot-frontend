@@ -6,8 +6,6 @@ gem 'sinatra'
 gem 'haml'
 gem 'sass'
 
-gem 'unicorn'
-
 group :development do
   gem 'shotgun'
 end
