@@ -24,11 +24,13 @@ $(document).ready( function() {
   var shrinkCardInfo = function(){
     $('.card-info').addClass('absolute')
     $('.card-info').css('width', '49%')
+    $('.card-info table').css('margin-right', '10%')
   }
 
   var resizeCardInfo = function(){
     $('.card-info').removeClass('absolute')
     $('.card-info').css('width', '75%')
+    $('.card-info table').css('margin-right', '0')
   }
 
   var hideLargeCard = function(){
