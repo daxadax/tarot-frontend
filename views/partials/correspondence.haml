@@ -1,0 +1,19 @@
+%table
+  - card.astrological_signs.each do |sign|
+    %tr.astrological-correspondence
+      %td.title= astrological_image(sign)
+      %td.description= static_correspondences.astrological[sign]
+
+  - card.elements.each do |element|
+    %tr.elemental-correspondence
+      %td.title= elemental_image(element)
+      %td.description= static_correspondences.elemental[element]
+
+  %tr.rank-correspondence
+    %td.title.bold= card.display_rank
+    %td.description= card.rank_correspondence 
+
+  - if card.golden_dawn_correspondence
+    %tr.golden-dawn-correspondence
+      %td.title.bold Golden Dawn
+      %td.description= card.golden_dawn_correspondence

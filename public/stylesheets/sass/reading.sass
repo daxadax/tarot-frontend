@@ -1,50 +1,43 @@
-
-// // // // // // // // //
-// mixins and imports / //
-// // // // // // // // //
+// mixins and imports
 
 @import 'base'
 +base_rules
 
-@mixin sidebar-button
-  color:        black
-  width:        90%
-  margin-left:  auto
-  margin-right: auto
-  padding:      5px
-  border:       2px solid $dark-border
-  margin-top:   2px
-
-// // // // // // //
-// main styling / //
-// // // // // // //
+// main styling
 
 html, body
   background-image: url('/images/background_wood.jpg')
 
 #spread
-  .row
-    margin-top: 2em
-
-#unseen-cards
-  margin-left: 50%
-  max-width:  130px
-  img
-    cursor: pointer
-    width:  133px
+  margin-top: 2em
+  #info
+    float: left
+    width: 75%
+  #unseen-cards
+    float: right
+    width: 15%
+    margin-right: 7%
+    max-width:  130px
+    img
+      cursor: pointer
+      width:  133px
 
 #content
   #cards-holder
-    width: 80%
-    margin-top: 2%
+    display: inline-block
+    white-space: nowrap
+    width: 90%
+    max-width: 90%
     margin-left: 5%
-    float: left
+    margin-top: 2%
     .card
+      display: inline-block
+      float: left
       margin: 5px
-      max-width:  147px
       background: $card-background
       img
-        width:  133px
+        width: 149px
+        height: auto
     .trumps
       border: 7px solid $trump
     .wands
@@ -57,42 +50,43 @@ html, body
       border: 7px solid $swords
 
 #overlay
-  background: rgba(0, 0, 0, 0.8)
-  color: white
-  margin-left: 10px
-  .card-info-panel
-    position: absolute
-    z-index: 10
-    width: 70%
-    background: #111
+  overflow: auto
+  background: $overlay
+  color: $text-color
+  margin-left: 20px
+  #info-panel
     .moon-info
-      position: relative
+      width: 20%
       float: left
-      width: 25%
       .moon-info-inner
         padding: 3%
       #the-moon
         overflow: hidden
         img
           padding: 10px
-          width: 100%
+          width: 75%
           transform: rotateZ(70deg)
     .card-info
-      float: left
       width: 75%
+      margin-left: 3%
+      float: left
+      z-index: 1
       .description
-        padding: 3%
         .display-name
-          margin: 20px 0px
-          img
-            width: 30px
-            margin-bottom: 5px
-          .reversed
+          margin-bottom: 0
+        .correspondence
+          table
+            color: $text-color
+            .title
+              text-align: center
+              width: 15%
+              img
+                width: 30px
   #large-card
     position: fixed
     top: 0
     left: 0
-    background: #111
+    background: $large-card-background
     width: 100%
     z-index: 1
     img

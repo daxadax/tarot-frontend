@@ -2,7 +2,7 @@ $(document).ready( function() {
   var cards = $('#spread').data('cards'),
     clickCount = 0;
 
-  $('#unseen-cards').mousedown(function() {
+  $('#unseen-cards').on('mousedown', function() {
     var card_id = cards.pop();
 
     displayCardInfo(card_id);
@@ -18,7 +18,7 @@ $(document).ready( function() {
       dataType: 'html',
       success: function(result){
         $('#cards-holder').append(
-          "<div class= 'position-"+ index +" float-left' >" + result + "</div>"
+          "<div class= 'position-"+ index +" inline-block' >" + result + "</div>"
         )
       }
     })

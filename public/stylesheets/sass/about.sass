@@ -1,0 +1,37 @@
+// mixins and imports
+
+@import 'base'
++base_rules
+
+@mixin content-box
+  padding: 1em
+  padding-left: 2em
+  margin-top: 5px
+  margin-bottom: 5px
+  background: $overlay
+  color: $text-color
+
+// main styling
+
+#content
+  margin: 3em
+  width: 80%
+  margin-left: 10%
+  #about
+    @include content-box
+    .sub-title
+      margin-top: 2em
+    #body
+      margin: 4em
+    ul
+      list-style: initial
+  #donate
+    @include content-box
+    .address
+      font-size: x-small
+      margin: 5px
+    .btc
+      img
+        width: 10em
+  #contact
+    @include content-box

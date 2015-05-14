@@ -7,10 +7,16 @@ class TarotApp < Sinatra::Application
     spread = build_deck
 
     haml :all_cards,
+      :layout => 'layouts/reading'.to_sym,
       :locals => {
         :cards => spread.cards.shuffle,
         :moon => MoonPresenter.new(spread.moon)
       }
+  end
+
+  get '/about' do
+    haml :about,
+      :layout => 'layouts/about'.to_sym
   end
 
   post '/card_info' do
@@ -32,7 +38,7 @@ class TarotApp < Sinatra::Application
     input = { :card_id => id }
     result = Tarot::UseCases::GetCard.new(input).call
 
-    CardPresenter.new(result.card)
+    CardPresenter.new(result.card, static_correspondences)
   end
 
   def build_deck(input = nil)
@@ -44,9 +50,17 @@ class TarotApp < Sinatra::Application
     Tarot::UseCases::GetCards.new(input).call
   end
 
+  def static_correspondences
+    @static_correspondences ||= fetch_static_correspondences
+  end
+
   def specified_cards
     return nil unless params[:specified_cards]
     JSON.parse(params[:specified_cards]).map(&:to_s)
+  end
+
+  def fetch_static_correspondences
+    Tarot::UseCases::GetStaticCorrespondences.new.call
   end
 
 end
@@ -61,18 +75,27 @@ helpers do
 
   def display_card_back_design
     path = "/images/decks/rider_waite/backside.png"
-    "<img src=#{path} />"
+    "<img src=#{path}>"
+  end
+
+  def astrological_image(sign)
+    source = "src=/images/symbols/#{sign}.png"
+    title = "title=#{sign}"
+
+    "<img #{source} #{title}>"
+  end
+
+  def elemental_image(element)
+    source = "src=/images/symbols/#{element}.png"
+    title = "title=#{element}"
+
+    "<img #{source} #{title}>"
   end
 
   def link_to(url,text=url,opts={})
     attributes = ""
     opts.each { |key,value| attributes << key.to_s << "=\"" << value << "\" "}
     "<a href=\"#{url}\" #{attributes}>#{text}</a>"
-  end
-
-  def display_associations(associations)
-    return associations if associations.is_a? String
-    associations.join(', ')
   end
 
   def format(sym)

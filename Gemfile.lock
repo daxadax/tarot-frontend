@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/daxadax/tarot_backend.git
-  revision: 73249ea8a23f3c1d1c26a483b21dd328990f4f13
+  revision: a2a7278412ea580ff74b3fc032d4eb32944e6f0f
   specs:
     tarot (0.0.1)
       bound
@@ -9,19 +9,19 @@ GEM
   remote: https://rubygems.org/
   specs:
     bound (2.1.0)
-    haml (4.0.5)
+    haml (4.0.6)
       tilt
-    rack (1.5.2)
+    rack (1.6.1)
     rack-protection (1.5.3)
       rack
-    sass (3.3.8)
-    shotgun (0.9)
+    sass (3.4.13)
+    shotgun (0.9.1)
       rack (>= 1.0)
-    sinatra (1.4.5)
+    sinatra (1.4.6)
       rack (~> 1.4)
       rack-protection (~> 1.4)
-      tilt (~> 1.3, >= 1.3.4)
-    tilt (1.4.1)
+      tilt (>= 1.3, < 3)
+    tilt (2.0.1)
 
 PLATFORMS
   ruby
