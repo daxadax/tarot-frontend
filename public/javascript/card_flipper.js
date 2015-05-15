@@ -4,6 +4,7 @@ $(document).ready( function() {
 
   $('#unseen-cards').on('mousedown', function() {
     var card_id = cards.pop();
+    if(card_id === undefined) { return };   
 
     displayCardInfo(card_id);
     showOverlay();
