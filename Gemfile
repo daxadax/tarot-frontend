@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 
-#gem 'tarot', :git => 'https://github.com/daxadax/tarot_backend.git'
-gem 'tarot', :path => '../tarot_backend'
+gem 'tarot', :git => 'https://github.com/daxadax/tarot_backend.git'
 
 gem 'sinatra'
 gem 'haml'

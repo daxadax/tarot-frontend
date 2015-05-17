@@ -1,5 +1,6 @@
-PATH
-  remote: ../tarot_backend
+GIT
+  remote: https://github.com/daxadax/tarot_backend.git
+  revision: a2a7278412ea580ff74b3fc032d4eb32944e6f0f
   specs:
     tarot (0.0.1)
       bound
