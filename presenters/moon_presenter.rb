@@ -3,24 +3,37 @@ class MoonPresenter
     @moon = moon
   end
 
-  def age
-    moon.age
-  end
-
   def phase
     moon.phase
   end
 
-  def image_path
-    age = (moon.age % 27).to_i
-    "/images/luna/#{age}.png"
+  def percent_illuminated
+    (moon.illumination * 100).floor
   end
 
-  def percent_illuminated
-    (moon.illumination * 100).round
+  def waxing?
+    moon.is_waxing
+  end
+
+  def waning?
+    moon.is_waning
+  end
+
+  def image_path
+    image = get_image
+    "/images/luna/#{image}.png"
   end
 
   private
+
+  def get_image
+    return '0' if phase == :new
+    return '13' if phase == :full
+    number = percent_illuminated.to_f / 8 
+    
+    return number.ceil if waxing?
+    26 - number.floor
+  end
 
   def moon
     @moon

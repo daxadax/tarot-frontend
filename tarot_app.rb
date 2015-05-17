@@ -43,7 +43,7 @@ class TarotApp < Sinatra::Application
 
   def build_deck(input = nil)
     input ||= {
-      :quantity => nil,
+      :quantity => 7,
       :cards => nil # specified_cards
     }
 
