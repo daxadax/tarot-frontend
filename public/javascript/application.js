@@ -15,15 +15,12 @@ var showOverlay = function(){
 
 var displayCardInfo = function(card_id){
   var current = $('#current-card-info').data('id');
-
-  if(current === card_id){
-    return
-  } else {
-    displayAjaxLoader('.card-info');
-    $('.card-info').load(
-      'card_info', {'card_id': card_id}
-    );
-  }
+  if(current === card_id) { return } 
+   
+  displayAjaxLoader('.card-info');
+  $('.card-info').load(
+    'card_info', {'card_id': card_id}
+  );
 };
 
 var displayAjaxLoader = function(element){
