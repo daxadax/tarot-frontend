@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/daxadax/tarot_backend.git
-  revision: a2a7278412ea580ff74b3fc032d4eb32944e6f0f
+  revision: fa519bf1d249d3394ee956c95d41c88fa760c398
   specs:
     tarot (0.0.1)
       bound
@@ -19,7 +19,7 @@ GEM
       rack
     rack-test (0.6.3)
       rack (>= 1.0)
-    sass (3.4.13)
+    sass (3.4.14)
     shotgun (0.9.1)
       rack (>= 1.0)
     sinatra (1.4.6)
