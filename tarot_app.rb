@@ -1,4 +1,9 @@
 class TarotApp < Sinatra::Application
+  
+  def card_cache
+    @cache ||= CardCache.new(static_correspondences)
+  end
+
   get '/' do
     redirect '/cards'
   end
@@ -15,8 +20,7 @@ class TarotApp < Sinatra::Application
   end
 
   get '/about' do
-    haml :about,
-      :layout => 'layouts/about'.to_sym
+    haml :about, :layout => 'layouts/about'.to_sym
   end
 
   post '/card_info' do
@@ -35,10 +39,7 @@ class TarotApp < Sinatra::Application
   private
 
   def get_card(id)
-    input = { :card_id => id }
-    result = Tarot::UseCases::GetCard.new(input).call
-
-    CardPresenter.new(result.card, static_correspondences)
+    card_cache.fetch(id)
   end
 
   def build_deck(input = nil)

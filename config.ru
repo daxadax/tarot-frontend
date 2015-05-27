@@ -11,6 +11,7 @@ use Sass::Plugin::Rack
 Bundler.require
 
 require './tarot_app'
+Dir.glob('./lib/*.rb') { |f| require f }
 Dir.glob('./presenters/*.rb') { |f| require f }
 
 run TarotApp
