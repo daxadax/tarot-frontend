@@ -18,8 +18,9 @@ $(document).ready( function() {
       url: 'card_for_spread/' + card_id,
       dataType: 'html',
       success: function(result){
+        $('.active').removeClass('active'); 
         $('#cards-holder').append(
-          "<div class= 'position-"+ index +" inline-block' >" + result + "</div>"
+          "<div class= 'position-"+ index +" inline-block active' >" + result + "</div>"
         )
       }
     })
