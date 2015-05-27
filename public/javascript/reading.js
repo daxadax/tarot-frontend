@@ -17,6 +17,11 @@ $(document).ready( function() {
       hideLargeCard();
       resizeCardInfo();
     };
+    if (key.keyCode === 13) { // enter
+      // triggers the card flipper stack
+      // feels dirty, but it's just so easy 
+      $('#unseen-cards').mousedown();  
+    };
     if (key.keyCode === 37) { // left arrow
       card = activeCard().prev()
       viewCard(card);
