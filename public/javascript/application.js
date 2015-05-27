@@ -1,5 +1,8 @@
 $(document).ready( function() {
 
+  $.ajaxSetup({ cache: true });
+
+  // any external links open in a new tab/window
   $(document.links).filter(function() {
       return this.hostname != window.location.hostname;
   }).attr('target', '_blank');
