@@ -19,7 +19,7 @@ $(document).ready( function() {
     };
     if (key.keyCode === 13) { // enter
       // triggers the card flipper stack
-      // feels dirty, but it's just so easy 
+      if(!$('#large-card').hasClass('hidden')) { return };   
       $('#unseen-cards').mousedown();  
     };
     if (key.keyCode === 37) { // left arrow
