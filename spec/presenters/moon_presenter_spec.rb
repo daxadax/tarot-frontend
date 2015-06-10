@@ -6,11 +6,13 @@ class MoonPresenterSpec < TarotSpec
       :phase => phase,
       :illumination => illumination,
       :is_waxing => is_waxing,
-      :is_waning => is_waning
+      :is_waning => is_waning,
+      :active_elements => active_elements
     }
   end
   let(:moon) { OpenStruct.new(options) }
   let(:phase) { :new }
+  let(:active_elements) { [:earth] }
   let(:illumination) { 0 }
   let(:is_waxing) { false }
   let(:is_waning) { false }
@@ -19,6 +21,10 @@ class MoonPresenterSpec < TarotSpec
 
   it 'gives access to phase' do 
     assert_equal phase, presenter.phase 
+  end
+
+  it 'gives access to active elements' do
+    assert_equal active_elements, presenter.active_elements
   end
 
   it 'gives access to percent_illuminated' do 

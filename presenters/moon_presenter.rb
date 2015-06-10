@@ -7,6 +7,10 @@ class MoonPresenter
     moon.phase
   end
 
+  def active_elements
+    moon.active_elements
+  end
+
   def percent_illuminated
     (moon.illumination * 100).floor
   end
