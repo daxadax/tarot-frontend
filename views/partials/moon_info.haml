@@ -2,5 +2,8 @@
   // moon images from http://www.danmorgan.org/wordpress/?p=618
   %img{ src: moon.image_path }
 .moon-info-inner
+  .active-elements
+    - moon.active_elements.each do |element|
+      = elemental_image(element)
   .moon-illumination= "#{ moon.percent_illuminated }% illuminated"
   .moon-phase= format(moon.phase)
