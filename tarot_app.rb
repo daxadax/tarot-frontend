@@ -1,21 +1,17 @@
 class TarotApp < Sinatra::Application
-  
-  def card_cache
-    @cache ||= CardCache.new(static_correspondences)
-  end
-
   get '/' do
     redirect '/cards'
   end
 
   get '/cards' do
     spread = build_deck
+    set_time_of_reading
 
     haml :all_cards,
       :layout => 'layouts/reading'.to_sym,
       :locals => {
         :cards => spread.cards.shuffle,
-        :moon => MoonPresenter.new(spread.moon)
+        :moon => moon_presenter_for_spread
       }
   end
 
@@ -38,7 +34,17 @@ class TarotApp < Sinatra::Application
 
   private
 
+  def set_time_of_reading
+    @time_of_reading = Time.now.utc
+  end
+
+  def time_of_reading
+    @time_of_reading
+  end
+
   def get_card(id)
+    # add moon_presenter to card cache
+    # invalidate based on #time_of_reading
     card_cache.fetch(id)
   end
 
@@ -47,8 +53,13 @@ class TarotApp < Sinatra::Application
       :quantity => 7,
       :cards => nil # specified_cards
     }
-
     Tarot::UseCases::GetCards.new(input).call
+  end
+
+  def moon_presenter_for_spread
+    input = { :time_of_reading => time_of_reading }
+    result = Tarot::UseCases::GetMoonInfo.new(input).call
+    MoonPresenter.new(result.moon)
   end
 
   def static_correspondences
@@ -64,6 +75,9 @@ class TarotApp < Sinatra::Application
     Tarot::UseCases::GetStaticCorrespondences.new.call
   end
 
+  def card_cache
+    @cache ||= CardCache.new(static_correspondences)
+  end
 end
 
 helpers do
@@ -102,5 +116,4 @@ helpers do
   def format(sym)
     sym.to_s.split('_').each(&:capitalize!).join(' ')
   end
-
 end
