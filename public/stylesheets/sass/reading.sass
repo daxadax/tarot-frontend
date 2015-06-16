@@ -54,23 +54,48 @@ html, body
   background: $overlay
   color: $text-color
   margin-left: 20px
+  max-height: 20em
   #info-panel
-    .moon-info
-      width: 20%
+    .influences
+      width: 25%
       float: left
-      .moon-info-inner
-        padding: 3%
-        .active-elements
+      .moon-info
+        border-bottom: 1px solid $border
+        border-right: 1px solid $border
+        padding-bottom: 0.5em
+        .moon-info-inner
+          .active-elements
+            img
+              width: 1.5em
+        #the-moon
+          overflow: hidden
           img
-            width: 30px
-      #the-moon
-        overflow: hidden
-        img
-          padding: 10px
-          width: 75%
-          transform: rotateZ(70deg)
+            padding: 10px
+            width: 5em
+            transform: rotateZ(70deg)
+      .planetary-influence
+        padding-top: 0.5em
+        padding-bottom: 0.5em
+        text-align: center
+        border-right: 1px solid $border
+        .title
+          font-weight: bold
+        table
+          margin-left: auto
+          margin-right: auto
+          color: $text-color
+          padding: 0.5em
+          .greater
+            img
+              width: 1.5em
+          img
+            width: 1em
+          td
+            width: 25%
+            &.symbol
+              text-align: center
     .card-info
-      width: 75%
+      width: 70%
       margin-left: 3%
       float: left
       z-index: 1
@@ -83,7 +108,7 @@ html, body
             color: $text-color
             .title
               text-align: center
-              width: 15%
+              width: 20%
               img
                 width: 30px
   #large-card

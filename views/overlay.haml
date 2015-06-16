@@ -1,8 +1,12 @@
 #overlay.hidden
   #large-card.hidden
   #info-panel
-    .moon-info.center
-      = haml 'partials/moon_info'.to_sym, locals: {moon: moon}
+    .influences
+      .moon-info.center
+        = haml 'partials/moon_info'.to_sym, locals: {moon: moon}
+      .planetary-influence
+        = haml 'partials/planetary_influence'.to_sym, 
+          locals: {planetary_influence: planetary_influence}
     .card-info
       .center
-        %img{:src => '/images/ajax-loader.gif'}
+        %img{:src => '/images/ajax-loader.gif'}   

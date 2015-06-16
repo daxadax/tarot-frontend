@@ -5,7 +5,10 @@
   %link(rel="stylesheet" href='/stylesheets/reading.css' type='text/css')
 %body
   #header
-  = render :haml, :header, locals: {cards: cards, moon: moon}
+  = render :haml, :header, 
+    locals: {cards: cards, 
+             moon: moon,
+             planetary_influence: planetary_influence}
   #content
     = yield
 

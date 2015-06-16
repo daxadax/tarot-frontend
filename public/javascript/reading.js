@@ -58,7 +58,7 @@ $(document).ready( function() {
 
   var resizeCardInfo = function(){
     $('.card-info').removeClass('absolute')
-    $('.card-info').css('width', '75%')
+    $('.card-info').css('width', '70%')
   };
 
   var updateCardImage = function(image_path){

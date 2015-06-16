@@ -1,5 +1,8 @@
 #spread{ data: { cards: cards.map {|c| c.id} }}
   #info
-    = render :haml, :overlay, locals: { cards: cards, moon: moon}
+    = render :haml, :overlay, 
+      locals: { cards: cards, 
+                moon: moon,
+                planetary_influence: planetary_influence}
   #unseen-cards
     = display_card_back_design

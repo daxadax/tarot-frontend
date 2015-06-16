@@ -1,0 +1,20 @@
+.title Planetary Influences
+%table
+  %tbody
+    %tr.greater
+      %td.ruling-sign Ruling sign(s)
+      - planetary_influence.ruling_signs.each do |sign|
+        %td.symbol= astrological_image(sign)
+      %td.ruling-planet Ruling planet(s)
+      - planetary_influence.ruling_planets.each do |planet|
+        %td.symbol= astrological_image(planet)
+    %tr
+      %td.decan-planet Decan
+      %td.symbol= astrological_image(planetary_influence.decan_planet)
+      %td.daily-planet Daily
+      %td.symbol= astrological_image(planetary_influence.daily_planet)
+    %tr
+      %td.yearly-planet Yearly
+      %td.symbol= astrological_image(planetary_influence.yearly_planet)
+      %td.cyclic-planet Cyclic
+      %td.symbol= astrological_image(planetary_influence.cyclic_planet)

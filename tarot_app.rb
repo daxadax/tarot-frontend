@@ -11,7 +11,8 @@ class TarotApp < Sinatra::Application
       :layout => 'layouts/reading'.to_sym,
       :locals => {
         :cards => spread.cards.shuffle,
-        :moon => moon_presenter_for_spread
+        :moon => moon_presenter_for_spread,
+        :planetary_influence => planetary_influence_for_spread
       }
   end
 
@@ -22,8 +23,10 @@ class TarotApp < Sinatra::Application
   post '/card_info' do
     # expires 500, :public, :must_revalidate
     haml 'partials/card_info'.to_sym, {
-      :layout => false,
-      :locals => {:card => get_card(params[:card_id]) }
+      layout: false,
+      locals: { 
+        card: get_card(params[:card_id])
+      }
     }
   end
 
@@ -57,9 +60,15 @@ class TarotApp < Sinatra::Application
   end
 
   def moon_presenter_for_spread
-    input = { :time_of_reading => time_of_reading }
+    input = {time_of_reading: time_of_reading}
     result = Tarot::UseCases::GetMoonInfo.new(input).call
     MoonPresenter.new(result.moon)
+  end
+
+  def planetary_influence_for_spread
+    input = {time_of_reading: time_of_reading}
+    result = Tarot::UseCases::GetPlanetaryInfluence.new(input).call
+    result.planetary_influence
   end
 
   def static_correspondences
