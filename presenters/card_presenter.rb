@@ -34,8 +34,8 @@ class CardPresenter
   end
 
   def golden_dawn_correspondence
-    gda = card.correspondence.golden_dawn
-    gda.empty? ? nil : gda
+    gdc = card.correspondence.golden_dawn
+    gdc.empty? ? nil : gdc
   end
 
   def rank_correspondence
