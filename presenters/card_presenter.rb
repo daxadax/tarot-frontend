@@ -39,8 +39,8 @@ class CardPresenter
   end
 
   def rank_correspondence
-    rank = arcana + id.split('_').last
-    static_correspondences.rank[rank]
+    rank = arcana.to_s + id.split('_').last
+    static_correspondences.rank[rank.to_sym]
   end
 
   def major?
