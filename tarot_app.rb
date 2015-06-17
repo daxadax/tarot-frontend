@@ -68,7 +68,7 @@ class TarotApp < Sinatra::Application
   def planetary_influence_for_spread
     input = {time_of_reading: time_of_reading}
     result = Tarot::UseCases::GetPlanetaryInfluence.new(input).call
-    result.planetary_influence
+    PlanetaryInfluencePresenter.new(result.planetary_influence)
   end
 
   def static_correspondences
