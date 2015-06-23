@@ -1,13 +1,16 @@
 .title Planetary Influences
+.greater
+  .ruling-signs 
+    Ruling sign(s)
+    - planetary_influence.ruling_signs.each do |sign|
+      %span.symbol= astrological_image(sign)
+  .ruling-planets 
+    Ruling planet(s)
+    - planetary_influence.ruling_planets.each do |planet|
+      %span.symbol= astrological_image(planet)
+
 %table
   %tbody
-    %tr.greater
-      %td.ruling-sign Ruling sign(s)
-      - planetary_influence.ruling_signs.each do |sign|
-        %td.symbol= astrological_image(sign)
-      %td.ruling-planet Ruling planet(s)
-      - planetary_influence.ruling_planets.each do |planet|
-        %td.symbol= astrological_image(planet)
     %tr
       %td.decan-planet Decan
       %td.symbol= astrological_image(planetary_influence.decan)
