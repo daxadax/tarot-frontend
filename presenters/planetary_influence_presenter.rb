@@ -4,9 +4,11 @@ module Presenters
       @influence = influence
     end
 
-  def ruling_planets
-    influence.ruling_planets
-  end
+    def title_for(influence)
+      title = format_symbol(influence)
+      return title if self.send(influence).size > 1
+      title.chop
+    end
 
     def ruling_planets
       influence.ruling_planets

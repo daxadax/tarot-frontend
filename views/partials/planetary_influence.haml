@@ -1,11 +1,11 @@
 .title Planetary Influences
 .greater
   .ruling-signs 
-    Ruling sign(s)
+    = planetary_influence.title_for(:ruling_signs)
     - planetary_influence.ruling_signs.each do |sign|
       %span.symbol= astrological_image(sign)
   .ruling-planets 
-    Ruling planet(s)
+    = planetary_influence.title_for(:ruling_planets)
     - planetary_influence.ruling_planets.each do |planet|
       %span.symbol= astrological_image(planet)
 
