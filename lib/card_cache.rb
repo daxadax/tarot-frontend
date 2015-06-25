@@ -12,7 +12,7 @@ class CardCache
 
   def get_card_from_use_case(input)
     result = Tarot::UseCases::GetCard.new(input).call
-    card = CardPresenter.new(result.card, @static_correspondences)
+    card = Presenters::CardPresenter.new(result.card, @static_correspondences)
     @cache[card.id] = card
     card
   end

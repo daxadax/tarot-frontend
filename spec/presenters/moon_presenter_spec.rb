@@ -16,30 +16,30 @@ class MoonPresenterSpec < TarotSpec
   let(:illumination) { 0 }
   let(:is_waxing) { false }
   let(:is_waning) { false }
-  
-  let(:presenter) { MoonPresenter.new(moon) }
 
-  it 'gives access to phase' do 
-    assert_equal phase, presenter.phase 
+  let(:presenter) { Presenters::MoonPresenter.new(moon) }
+
+  it 'gives access to a formatted phase' do
+    assert_equal 'New', presenter.phase
   end
 
   it 'gives access to active elements' do
     assert_equal active_elements, presenter.active_elements
   end
 
-  it 'gives access to percent_illuminated' do 
+  it 'gives access to percent_illuminated' do
     assert_equal illumination * 100, presenter.percent_illuminated
   end
 
-  it 'gives access to is_waxing' do 
+  it 'gives access to is_waxing' do
     assert_equal is_waxing, presenter.waxing?
   end
 
-  it 'gives access to is_waning' do 
+  it 'gives access to is_waning' do
     assert_equal is_waning, presenter.waning?
   end
 
-  describe 'image_path' do 
+  describe 'image_path' do
     it 'returns the correct image path' do
       assert_equal '/images/luna/0.png', presenter.image_path
     end
@@ -48,7 +48,7 @@ class MoonPresenterSpec < TarotSpec
       let(:phase) { :crescent }
       let(:illumination) { 0.23 }
       let(:is_waxing) { true }
-    
+
       it 'returns the correct image path' do
         assert_equal '/images/luna/3.png', presenter.image_path
       end
@@ -58,8 +58,8 @@ class MoonPresenterSpec < TarotSpec
       let(:phase) { :balsamic }
       let(:illumination) { 0.23 }
       let(:is_waning) { true }
-    
-      it 'returns the correct image path' do 
+
+      it 'returns the correct image path' do
         assert_equal '/images/luna/24.png', presenter.image_path
       end
     end

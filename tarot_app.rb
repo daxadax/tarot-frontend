@@ -24,7 +24,7 @@ class TarotApp < Sinatra::Application
     # expires 500, :public, :must_revalidate
     haml 'partials/card_info'.to_sym, {
       layout: false,
-      locals: { 
+      locals: {
         card: get_card(params[:card_id])
       }
     }
@@ -62,13 +62,14 @@ class TarotApp < Sinatra::Application
   def moon_presenter_for_spread
     input = {time_of_reading: time_of_reading}
     result = Tarot::UseCases::GetMoonInfo.new(input).call
-    MoonPresenter.new(result.moon)
+    Presenters::MoonPresenter.new(result.moon)
   end
 
   def planetary_influence_for_spread
     input = {time_of_reading: time_of_reading}
     result = Tarot::UseCases::GetPlanetaryInfluence.new(input).call
-    PlanetaryInfluencePresenter.new(result.planetary_influence)
+    presenter = Presenters::PlanetaryInfluencePresenter
+    presenter.new(result.planetary_influence)
   end
 
   def static_correspondences
@@ -120,9 +121,5 @@ helpers do
     attributes = ""
     opts.each { |key,value| attributes << key.to_s << "=\"" << value << "\" "}
     "<a href=\"#{url}\" #{attributes}>#{text}</a>"
-  end
-
-  def format(sym)
-    sym.to_s.split('_').each(&:capitalize!).join(' ')
   end
 end

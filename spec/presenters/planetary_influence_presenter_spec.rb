@@ -12,7 +12,7 @@ class PlanetaryInfluencePresenterSpec < TarotSpec
     }
   end
   let(:data) { OpenStruct.new(options) }
-  let(:presenter) { PlanetaryInfluencePresenter.new(data) }
+  let(:presenter) { Presenters::PlanetaryInfluencePresenter.new(data) }
 
   it 'gives access to ruling_planets' do 
     assert_equal [:sol, :luna], presenter.ruling_planets
