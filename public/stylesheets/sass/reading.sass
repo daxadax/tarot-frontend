@@ -13,6 +13,92 @@ html, body
   #info
     float: left
     width: 75%
+    height: 20em
+    #overlay
+      overflow: auto
+      background: $overlay
+      color: $text-color
+      margin-left: 20px
+      #info-panel
+        .influences
+          width: 25%
+          float: left
+          .moon-info
+            border-bottom: 1px solid $border
+            border-right: 1px solid $border
+            padding-bottom: 0.5em
+            .moon-info-inner
+              .active-elements
+                img
+                  width: 1.5em
+            #the-moon
+              overflow: hidden
+              img
+                padding: 10px
+                width: 5em
+                transform: rotateZ(70deg)
+          .planetary-influence
+            padding-top: 0.5em
+            padding-bottom: 0.5em
+            text-align: center
+            border-right: 1px solid $border
+            .title
+              font-weight: bold
+            .greater
+              margin-top: 0.2em
+              .ruling-signs
+                width: 50%
+                float: left
+              .ruling-planets
+                width: 50%
+                float: left
+              img
+                width: 2em
+                margin-top: 0.25em
+                margin-left: 0.3em
+                margin-right: 0.3em
+            table
+              margin-left: auto
+              margin-right: auto
+              color: $text-color
+              padding: 0.25em
+              td 
+                padding: 0 0.5em
+                img
+                  width: 1em
+        .main-panel
+          position: relative
+          width: 70%
+          height: 20em
+          float: left
+          margin-left: 3%
+          .symbol-tally
+            position: absolute
+            bottom: 0.7em
+          .card-info
+            z-index: 1
+            .description
+              .display-name
+                margin-top: 10px
+                margin-bottom: 0
+              .correspondence
+                table
+                  color: $text-color
+                  .title
+                    text-align: center
+                    width: 20%
+                    img
+                      width: 30px
+      #large-card
+        position: fixed
+        top: 0
+        left: 0
+        background: $large-card-background
+        width: 100%
+        z-index: 1
+        img
+          height: 100%
+          margin-left: 60%
   #unseen-cards
     float: right
     width: 15%
@@ -49,83 +135,3 @@ html, body
     .swords
       border: 7px solid $swords
 
-#overlay
-  overflow: auto
-  background: $overlay
-  color: $text-color
-  margin-left: 20px
-  max-height: 20em
-  #info-panel
-    .influences
-      width: 25%
-      float: left
-      .moon-info
-        border-bottom: 1px solid $border
-        border-right: 1px solid $border
-        padding-bottom: 0.5em
-        .moon-info-inner
-          .active-elements
-            img
-              width: 1.5em
-        #the-moon
-          overflow: hidden
-          img
-            padding: 10px
-            width: 5em
-            transform: rotateZ(70deg)
-      .planetary-influence
-        padding-top: 0.5em
-        padding-bottom: 0.5em
-        text-align: center
-        border-right: 1px solid $border
-        .title
-          font-weight: bold
-        .greater
-          margin-top: 0.2em
-          .ruling-signs
-            width: 50%
-            float: left
-          .ruling-planets
-            width: 50%
-            float: left
-          img
-            width: 2em
-            margin-top: 0.25em
-            margin-left: 0.3em
-            margin-right: 0.3em
-        table
-          margin-left: auto
-          margin-right: auto
-          color: $text-color
-          padding: 0.25em
-          td 
-            padding: 0 0.5em
-            img
-              width: 1em
-    .card-info
-      width: 70%
-      margin-left: 3%
-      float: left
-      z-index: 1
-      .description
-        .display-name
-          margin-top: 10px
-          margin-bottom: 0
-        .correspondence
-          table
-            color: $text-color
-            .title
-              text-align: center
-              width: 20%
-              img
-                width: 30px
-  #large-card
-    position: fixed
-    top: 0
-    left: 0
-    background: $large-card-background
-    width: 100%
-    z-index: 1
-    img
-      height: 100%
-      margin-left: 60%
