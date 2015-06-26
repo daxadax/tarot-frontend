@@ -4,6 +4,6 @@
 .moon-info-inner
   .active-elements
     - moon.active_elements.each do |element|
-      = elemental_image(element)
+      = display_symbol(element)
   .moon-illumination= "#{ moon.percent_illuminated }% illuminated"
   .moon-phase= format(moon.phase)

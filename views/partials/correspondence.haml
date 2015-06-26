@@ -1,12 +1,12 @@
 %table
   - card.astrological_signs.each do |sign|
     %tr.astrological-correspondence
-      %td.title= astrological_image(sign)
+      %td.title= display_symbol(sign)
       %td.description= static_correspondences.astrological[sign]
 
   - card.elements.each do |element|
     %tr.elemental-correspondence
-      %td.title= elemental_image(element)
+      %td.title= display_symbol(element)
       %td.description= static_correspondences.elemental[element]
 
   %tr.rank-correspondence

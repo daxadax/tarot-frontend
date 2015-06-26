@@ -3,21 +3,21 @@
   .ruling-signs 
     = planetary_influence.title_for(:ruling_signs)
     - planetary_influence.ruling_signs.each do |sign|
-      %span.symbol= astrological_image(sign)
+      %span.symbol= display_symbol(sign)
   .ruling-planets 
     = planetary_influence.title_for(:ruling_planets)
     - planetary_influence.ruling_planets.each do |planet|
-      %span.symbol= astrological_image(planet)
+      %span.symbol= display_symbol(planet)
 
 %table
   %tbody
     %tr
       %td.decan-planet Decan
-      %td.symbol= astrological_image(planetary_influence.decan)
+      %td.symbol= display_symbol(planetary_influence.decan)
       %td.daily-planet Daily
-      %td.symbol= astrological_image(planetary_influence.daily)
+      %td.symbol= display_symbol(planetary_influence.daily)
     %tr
       %td.yearly-planet Yearly
-      %td.symbol= astrological_image(planetary_influence.yearly)
+      %td.symbol= display_symbol(planetary_influence.yearly)
       %td.cyclic-planet Cyclic
-      %td.symbol= astrological_image(planetary_influence.cyclic)
+      %td.symbol= display_symbol(planetary_influence.cyclic)

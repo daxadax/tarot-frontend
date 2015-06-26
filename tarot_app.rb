@@ -103,18 +103,12 @@ helpers do
     "<img src=#{path}>"
   end
 
-  def astrological_image(sign)
-    source = "src=/images/symbols/#{sign}.png"
-    title = "title=#{sign}"
+  def display_symbol(symbol)
+    source = "src=/images/symbols/#{symbol}.png"
+    title = "title=#{symbol}"
+    css_class = "class='symbol-#{symbol}'"
 
-    "<img #{source} #{title}>"
-  end
-
-  def elemental_image(element)
-    source = "src=/images/symbols/#{element}.png"
-    title = "title=#{element}"
-
-    "<img #{source} #{title}>"
+    "<img #{source} #{title} #{css_class}>"
   end
 
   def link_to(url,text=url,opts={})
