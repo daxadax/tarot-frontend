@@ -4,13 +4,12 @@ class TarotApp < Sinatra::Application
   end
 
   get '/cards' do
-    spread = build_deck
     set_time_of_reading
 
     haml :all_cards,
       :layout => 'layouts/reading'.to_sym,
       :locals => {
-        :cards => spread.cards.shuffle,
+        :cards => build_deck.cards.shuffle,
         :moon => moon_presenter_for_spread,
         :planetary_influence => planetary_influence_for_spread
       }
