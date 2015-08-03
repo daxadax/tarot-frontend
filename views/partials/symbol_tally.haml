@@ -1,0 +1,6 @@
+%ul
+  -available_symbols.each do |symbol|
+    .hidden{ class: symbol }
+      %li= display_symbol(symbol)
+      %li.count
+          
