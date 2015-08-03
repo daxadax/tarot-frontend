@@ -1,4 +1,4 @@
-#spread{ data: { cards: cards.map {|c| c.id} }}
+#spread{ data: { available_symbols: available_symbols, cards: cards.map {|c| c.id} }}
   #info
     = render :haml, :overlay, 
       locals: { cards: cards, 

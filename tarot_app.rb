@@ -19,7 +19,7 @@ class TarotApp < Sinatra::Application
     haml :about, :layout => 'layouts/about'.to_sym
   end
 
-  post '/card_info' do
+  post '/card_info/:card_id' do
     # expires 500, :public, :must_revalidate
     haml 'partials/card_info'.to_sym, {
       layout: false,
@@ -114,5 +114,11 @@ helpers do
     attributes = ""
     opts.each { |key,value| attributes << key.to_s << "=\"" << value << "\" "}
     "<a href=\"#{url}\" #{attributes}>#{text}</a>"
+  end
+
+  def available_symbols
+    return @available_symbols if defined? @available_symbols
+    symbols = Dir.entries(File.expand_path('../public/images/symbols', __FILE__))
+    @available_symbols = symbols.map { |s| s.sub('.png', '') } - %w[. ..]
   end
 end
