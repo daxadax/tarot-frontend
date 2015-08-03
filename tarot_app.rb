@@ -20,7 +20,7 @@ class TarotApp < Sinatra::Application
     haml :about, :layout => 'layouts/about'.to_sym
   end
 
-  post '/card_info' do
+  post '/card_info/:card_id' do
     # expires 500, :public, :must_revalidate
     haml 'partials/card_info'.to_sym, {
       layout: false,
